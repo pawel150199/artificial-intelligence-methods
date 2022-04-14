@@ -1,2 +1,5 @@
 # MSI-project
-Analyzing a undersampling method  in big data. 
+Analysis of undersampling method in big data.
+
+
+

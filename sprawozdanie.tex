@@ -8,6 +8,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[polish]{babel}
 \usepackage[utf8]{inputenc}
+\usepackage{hyperref}
 \pagenumbering{arabic}
 
 \begin{document}
@@ -32,19 +33,21 @@
 
 %
 \section{Opis problemu.}
-Pozyskiwanie wiedzy z rzeczywistych zbiorów danych w dzisiejszych czasach jest trudne, ponieważ dane te są często wielowymiarowe, wieloklasowe oraz niezrównoważone. W uczeniu nadzorowanym w celu poprawnego nauczenia modelu lub klasyfikatora potrzebujemy danych, które ten proces umożliwią. Aby przystosować obecnie gromadzone zbiory wprowadzono metody, które umożliwiają ich zrównoważenie. Powszechnie stosowane są techniki próbkowania danych, czyli podpróbkowania (undersampling) lub nadmiernego próbkowania(oversampling). Powodują one zmniejszenie instancji klas w podejściu podpróbkowania oraz powstawania klas mniejszościowych w nadmiernym próbkowaniu. Każda z tych technik wnosi pewne zmiany do wcześniej posiadanych już zbiorów. Różnica pomiędzy undersamplingiem a oversamplingiem została przedstawiona na rysunku nr 1 i nr 2.
+Pozyskiwanie wiedzy z rzeczywistych zbiorów danych w dzisiejszych czasach jest trudne, ponieważ dane te są często wielowymiarowe, wieloklasowe oraz niezrównoważone. W uczeniu nadzorowanym w celu poprawnego nauczenia modelu lub klasyfikatora potrzebujemy danych, które ten proces umożliwią. Aby przystosować obecnie gromadzone zbiory wprowadzono metody, które umożliwiają ich zrównoważenie. 
+\cite{inproceedingss}
+Powszechnie stosowane są techniki próbkowania danych, czyli podpróbkowania (undersampling) lub nadmiernego próbkowania(oversampling)\cite{4717268}. Powodują one zmniejszenie instancji klas w podejściu podpróbkowania oraz powstawania klas mniejszościowych w nadmiernym próbkowaniu. Każda z tych technik wnosi pewne zmiany do wcześniej posiadanych już zbiorów. Różnica pomiędzy undersamplingiem a oversamplingiem została przedstawiona na rysunku nr 1 i nr 2.
 
 
 
 \begin{figure}[h!]
 \includegraphics[width=\textwidth]{under_oversampling}
-\caption{Różnica pomiędzy undersamplingiem a oversamplingiem} 
+\caption{Różnica pomiędzy undersamplingiem a oversamplingiem \cite{inproceedingss}.} 
 \label{fig:under_oversampling}
 \end{figure}
 \break 
 \begin{figure}[h!]
 \includegraphics[width=\textwidth]{xdd.png}
-\caption{Różnica pomiędzy undersamplingiem a oversamplingiem} 
+\caption{Różnica pomiędzy undersamplingiem a oversamplingiem\cite{8982391}.} 
 \label{fig:underoversampling}
 \end{figure}
 
@@ -66,7 +69,7 @@ W zbiorach dużych danych dąży się do zmniejszenia danych bez utraty danych i
 \subsubsection{Big Data}
 \hfill \break
 
-Terminem tym określa się zbiory danych tak duże, przy których metody analizy tradycyjnej nie zwracają oczekiwanych wyników bądź zastosowanie ich jest wręcz niemożliwe. Big Data to również dane, które nie mogą być obsługiwane i przetwarzane przez większość obecnych systemów lub metod informatycznych, ponieważ oprócz swojego rozmiaru uniemożliwiające załadowanie ich na pojedyńczą instancję urządzenia, to również wiele tradycyjnych metod analizy danych stowrzonych dla scentralizowanego procesu przetwarzanua ich mogą być niemożliwe w użyciu. Dane wieloskalowe wykorzystuje się zarówno w środowisku komercyjnym, ale również w niekomercyjnym. Na przykładzie firm komercyjnych analiza dużych zbiorów danych może posłużyć do zwiększenia wiedzy na temat personelu, procesów produkcyjnych, produktów oraz klientów. Z drugiej strony organizacje rządowe wykorzystują analizę Big Data m.in w celu wykrywania oszustw, zwiększenia płynności finansowych oraz bezpieczeństwa. Różne organizacje, które mają dostęp do dużych zbiorów danych na konkretny temat mogą wykorzystać wyniki ich analizy w celu opracowania strategii rozwoju na przyszłość. Istnieje definicja zwana również 3V, która wyjaśnia czym są Big Data: objętość, szybkość, różnorodność. Definicja 3V oznacza, że rozmiar danych jest duży, dane będą tworzone szybko, a dane będą istniały odpowiednio w wielu typach i pochodzą z różnych źródeł. Później wykazano, że te pojęcia nie są wystarczające aby wyjaśnić czym są Big Data, dlatego dodano do nich prawdziwość, trafność, wartość, zmienność, miejsce, słownictwo i niejasność, aby uzupełnić wyjaśnienie dużych zbiorów danych. %(Thus, veracity, validity, value, variability, venue, vocabulary, and vagueness were added to make some complement explanation of big data)%
+Terminem tym określa się zbiory danych tak duże, przy których metody analizy tradycyjnej nie zwracają oczekiwanych wyników bądź zastosowanie ich jest wręcz niemożliwe. Big Data to również dane, które nie mogą być obsługiwane i przetwarzane przez większość obecnych systemów lub metod informatycznych, ponieważ oprócz swojego rozmiaru uniemożliwiające załadowanie ich na pojedyńczą instancję urządzenia, to również wiele tradycyjnych metod analizy danych stowrzonych dla scentralizowanego procesu przetwarzanua ich mogą być niemożliwe w użyciu. Dane wieloskalowe wykorzystuje się zarówno w środowisku komercyjnym, ale również w niekomercyjnym. Na przykładzie firm komercyjnych analiza dużych zbiorów danych może posłużyć do zwiększenia wiedzy na temat personelu, procesów produkcyjnych, produktów oraz klientów\cite{doi:10.1177/2053951716631130}\cite{8424689}\cite{Tsai2015BigDA}. Z drugiej strony organizacje rządowe wykorzystują analizę Big Data m.in w celu wykrywania oszustw, zwiększenia płynności finansowych oraz bezpieczeństwa. Różne organizacje, które mają dostęp do dużych zbiorów danych na konkretny temat mogą wykorzystać wyniki ich analizy w celu opracowania strategii rozwoju na przyszłość. Istnieje definicja zwana również 3V, która wyjaśnia czym są Big Data: objętość, szybkość, różnorodność. Definicja 3V oznacza, że rozmiar danych jest duży, dane będą tworzone szybko, a dane będą istniały odpowiednio w wielu typach i pochodzą z różnych źródeł. Później wykazano, że te pojęcia nie są wystarczające aby wyjaśnić czym są Big Data, dlatego dodano do nich prawdziwość, trafność, wartość, zmienność, miejsce, słownictwo i niejasność, aby uzupełnić wyjaśnienie dużych zbiorów danych \cite{ohlhorst2012big}. %(Thus, veracity, validity, value, variability, venue, vocabulary, and vagueness were added to make some complement explanation of big data)%
 
 
 Głównymi kategorami danych są m.in: 
@@ -85,7 +88,7 @@ Z uwagi, że tworzenie danych jest dużo łatwiejsze niż znajdowanie w nich prz
     \item \textbf{O jednolitej strukturze danych} - większość problemów z analizą danych, zakłada, że format danych wejściowych będzie taki sam. W Big Data pojawia się problem różnorodności danych wejściowych czyli ich niezbalansowania.
 \end{itemize}
 
-W celu rozwiązania tego problemu pojawiły się metody takie jak próbkowanie (podział metod próbkowania opisany jest w punkcie \ref{sampling_methods}), kondensacja danych, dziel i zwyciężaj, przetwarzanie rozproszone oraz wiele innych. Głównym zadaniem tych metod jest możliwość analizy dużych zbiorów danych w rozsądnym czasie w celu wydobycia interesującej wiedzy. Ważną kwestią jest wstępne przygototwanie danych do dalszej analizy. Część badań  koncentruje się na zmniejszeniu złożoności danych wejściowych, ponieważ nawet najbardziej zaawansowana technologia komputerowa w większości przypadków nie jest w stanie wydajnie przetworzyć całych danych wejściowych przy użyciu jednej maszyny. Wykorzystanie wiedzy domenowej do zaprojektowania operatora przetwarzania wstępnego jest jednym z rozwiązań dla dużych zbiorów danych. Często też wykorzystuje się systemy chmurowe w celu wstępnego przetworzenia surowych danych.
+W celu rozwiązania tego problemu pojawiły się metody takie jak próbkowanie (podział metod próbkowania opisany jest w punkcie \ref{sampling_methods}), kondensacja danych, dziel i zwyciężaj, przetwarzanie rozproszone oraz wiele innych. Głównym zadaniem tych metod jest możliwość analizy dużych zbiorów danych w rozsądnym czasie w celu wydobycia interesującej wiedzy. Ważną kwestią jest wstępne przygototwanie danych do dalszej analizy. Część badań  koncentruje się na zmniejszeniu złożoności danych wejściowych, ponieważ nawet najbardziej zaawansowana technologia komputerowa w większości przypadków nie jest w stanie wydajnie przetworzyć całych danych wejściowych przy użyciu jednej maszyny. Wykorzystanie wiedzy domenowej do zaprojektowania operatora przetwarzania wstępnego jest jednym z rozwiązań dla dużych zbiorów danych. Często też wykorzystuje się systemy chmurowe w celu wstępnego przetworzenia surowych danych \cite{10.5555/2559492}.
 
 
 \begin{table}[h!]
@@ -120,7 +123,7 @@ Rozszerzalność i skalowalność & Mała-średnia & Duża\\
 \label{sampling_methods}
 \subsubsection{Oversampling.} 
 \hfill \break
-Metody oversamplingu polegają na zrównoważeniu rozkładu prawdopodobieństwa apriori pomiędzy klasami. Dzięki wiedzy na temat klas problemu możemy przy pomocy określonego algorytmu stworzyć dane syntetyczne dla klasy mniejszościowej, które rozkład apriori pomiędzy klasami. Poniżej znajdują się najpopularniejsze metody:
+Metody oversamplingu polegają na zrównoważeniu rozkładu prawdopodobieństwa apriori pomiędzy klasami. Dzięki wiedzy na temat klas problemu możemy przy pomocy określonego algorytmu stworzyć dane syntetyczne dla klasy mniejszościowej, które rozkład apriori pomiędzy klasami. Poniżej znajdują się najpopularniejsze metody \cite{10.5555/3241691.3241712}:
 \begin{itemize}
 
     \item\textbf{Borderline-SMOTE} - algorytm ten wychodzi z założenia, że próbki znajdujące się daleko od granicy mogą w niewielkim stopniu zwiększyć powodzenie klasyfikacji. Technika ta identyfikuje próbki znajdujące się w pobliżu granicy.
@@ -142,7 +145,7 @@ Metody Undersamplingu mają za zadanie zmniejszyć ilość danych klasy mniejszo
     \item \textbf{Condensed nearest neighbor rule(CNN)} - metoda polega na eliminacji próbek klasy większościowej, które są odległe od granicy decyzji, ponieważ te próbki możemy uznać za mniej znaczące w procesie nauki. Najpierw losowo wybierana jest próba z klasy większościowej i utworzony podzbiór z wszystkimi próbkami klas mniejszościowych. Następnie 1-NN jest używany w tym podzbiorze, aby sklasyfikować inne próbki z klasy większościowej. Każda błędnie sklasyfikowana próbka z klasy większościowej jest brana do ponownego utworzenia zestawu danych próbkowanych. 
     \break
     \newline
-    \textbf{Algorytm CNN:}
+    \textbf{Algorytm CNN\cite{hart1968condensed}:}
     \begin{enumerate}
         \item  Pierwsza próbka jest umieszczana w zbiorze STORE.
         
@@ -157,7 +160,9 @@ Metody Undersamplingu mają za zadanie zmniejszyć ilość danych klasy mniejszo
     \end{enumerate}
     
     \newline
-    \item \textbf{Tomek links(TL)} - metoda jest przeciwieństwem metody CNN. Próbki graniczne mogą być traktowane jako niebezpieczne, ponieważ niewielka zmiana może spowodować przypisanie ich do niewłaściwej klasy.Każda próbka służy do znalezienia innej próbki, która ma minimalną odległość między nimi. Jeżeli te dwie próbki znajdą się w różnych klasach, próbka z klasy większościowej zostanie usunięta. Metoda ta może spowodować wzrost obszaru decyzyjnego. Metoda ta jest rozszerzeniem metody Nearest-Neighbour Rule (NNR). 
+    \item \textbf{Tomek links(TL)} - metoda jest przeciwieństwem metody CNN. 
+    \cite{elhassan2016classification}
+    Próbki graniczne mogą być traktowane jako niebezpieczne, ponieważ niewielka zmiana może spowodować przypisanie ich do niewłaściwej klasy.Każda próbka służy do znalezienia innej próbki, która ma minimalną odległość między nimi. Jeżeli te dwie próbki znajdą się w różnych klasach, próbka z klasy większościowej zostanie usunięta. Metoda ta może spowodować wzrost obszaru decyzyjnego. Metoda ta jest rozszerzeniem metody Nearest-Neighbour Rule (NNR). 
     \newline
     \textbf{Działanie algorytmu:}
     \begin{enumerate}
@@ -169,7 +174,9 @@ Metody Undersamplingu mają za zadanie zmniejszyć ilość danych klasy mniejszo
 
     Metoda T-link może być stosowana jako metoda kierowanego undersamplingu.
     \break
-    \item \textbf{One-sided selection(OSS)} - metoda stosuje metody Tomek links, a następnie Condensed nearest neighbor rule. Dzięki zastosowaniu tych dwóch technik, pozostałe próbki klasy większościowej są bardziej przydatne do nauki.
+    \item \textbf{One-sided selection(OSS)} - metoda stosuje metody Tomek links, a następnie Condensed nearest neighbor rule.
+    \cite{6891771}
+    Dzięki zastosowaniu tych dwóch technik, pozostałe próbki klasy większościowej są bardziej przydatne do nauki.
     
     \begin{figure}[h!]
 \includegraphics[width=\textwidth]{obrazek.png}
@@ -206,36 +213,112 @@ Metody Undersamplingu mają za zadanie zmniejszyć ilość danych klasy mniejszo
     Próbę zmniejszenia liczby zbędnych przykładów można potraktować jako zadanie stworzenia spójnego podzbioru C zbioru uczącego S. Z definicji zbiór C zawierający się w S jest zgodny z S, jeśli użyty przez regułę 1-NN poprawnie sklasyfikuje przykłady w S. Należy zauważyć, iż każdy zbiór jest spójny sam w sobie. Nie zależy nam jednak na stworzeniu najmniejszego zbioru C. Wystarczy jedynie, iż zbiór wartości negatywnych wystarczająco się skurczy. W tym celu można użyć np. techniki Hart. Zaczynamy z jedną negatywną próbką oraz wszystkimi pozytywnymi próbkami umieszczonymi w C. Następnie za pomocą reguły 1-NN z przykładami w zbiorze C w celu ponowej reklasyfikacji zbioru S. Wtedy próbki, które zostały wcześniej błędnie pominięte zostaną dodane.\newline
     
 
-    \item \textbf{Neihborhood Cleaning Rule(NCL)}- wykorzystuję edytowaną regułę najbliższego sąsiada Wilsona (ENN), aby usunąć niektóre próbki klasy większościowej. Początkowo, odnajdywanych jest trzech najbliższych sąsiadów.Jeżeli wybrana próbka należy do klasy większościowej, ale algorytm trzech najbliższych sąsiadó błednie je zakwalifikował, taka próbka zostanie usunięta. Jeżeli wybrana próbka należy do klasy mniejszościowej, ale trzej wybrani sąsiedzi do klasy większościowej, najbliżsi sąsiedzi zostaną usunięci. 
+    \item \textbf{Neighborhood Cleaning Rule(NCL)}- wykorzystuję edytowaną regułę najbliższego sąsiada Wilsona (ENN),
+    \cite{6891771}
+    aby usunąć niektóre próbki klasy większościowej. Początkowo, odnajdywanych jest trzech najbliższych sąsiadów.Jeżeli wybrana próbka należy do klasy większościowej, ale algorytm trzech najbliższych sąsiadó błednie je zakwalifikował, taka próbka zostanie usunięta. Jeżeli wybrana próbka należy do klasy mniejszościowej, ale trzej wybrani sąsiedzi do klasy większościowej, najbliżsi sąsiedzi zostaną usunięci\cite{8921159}.
+    \item \textbf{Cluster Centroid}- Klastrowanie jest to grupowanie obiektów o podobnych właściwościach w wyniku czego powstaje klaster.Celem działania algorytmu jest znalezienie skupienia dla znioru obiektów nie etykietowanych. Zasada działania algorytmu k-centroidów polega na znalezieniu k środków tak, aby suma odległości punktów do najbliższego centroida była jak najmniejsza \cite{clustercentroids}.
+    Kroki postępowania algorytmu:
+    \newline
+    1. W sposób losowy zostaje wybranych k centrum centroidów.
+    \newline
+    2. Każdy z istniejących obiektów zostaje przydzielony do najbliższego centroida.
+     \begin{figure}[h!]
+\includegraphics[width=\textwidth]{obrazek cc1.png}
+\caption{Przydzielenie do centroidów} 
+\label{fig:obrazek_cc1}
+\end{figure}
+    \newline
+    3. Wyznaczony zostaje nowy układ centroidów.
+    \newline
+    4. Krok 2 zostaje powtórzony do momentu, aż przestanie być zauważalna poprawa jakości.
+    \newline
+    
+Opisany schemat algorytmu został przedstawiony na Rysunku nr 7.
+     \begin{figure}[h!]
+\includegraphics[width=\textwidth]{obrazek cc.png}
+\caption{Schemat działania algorytmu} 
+\label{fig:obrazek_cc1}
+\end{figure}
+    
+    
+    
 \end{itemize}
 
 \section{Wybrane algorytmy.}
 Po dogłębnym przeanalizowaniu tematu uznaliśmy, że do dużych zbiorów danych pasuje idealnie metoda udersamplingu. Dzięki niej zmniejszymy ilość danych,  i tak jest ich bardzo dużo. Redukcja danych może odbyć się bez większych strat informacyjnych ponieważ dane często się duplikują.  Metody, które wybraliśmy to:
 \begin{itemize}
     \item Random Undersampling
-    \item One side selection
+    \item Cluster Centroids
 \end{itemize}
-Wybraliśmy dwie metody, które są zróżnicowane. RUS wybraliśmy z powodu możliwości modyfikacji w celu lepszego wybierania danych do usunięcia. Metodę one side wybraliśmy że wzgledu na to, że jest bardziej zaawansowana i powinna teoretycznie lepiej wybierać dane, które można usunąć. Sprawdzimy jak te dwa algotrytmy radzą sobie na różnych zbiorach dużych danych. Dane będą niezbilansowane, lecz stopień ich niezbilansowania będzię różny. Po wykonaniu wstępnych badań, spróbujemy dokonać modyfikacji algorytmów i sprawdzimy czy modyfikacje pozwoliły na polepszenie jakości metryk.
+Wybraliśmy dwie metody, które są zróżnicowane. RUS wybraliśmy z powodu prostoty działania. Metodę Cluster Centroids wybraliśmy ze wzgledu na to, że jest bardziej zaawansowana i powinna teoretycznie lepiej wybierać dane, które można usunąć. Metoda ClusterCentroids korzysta z algorytmu k-means w celu redukcji liczby próbek w klasie większościowej. Dodatkowo stworzymy własny algorytm, którego działanie będzie opierać się na tworzeniu klastrów przy pomocy algorytmu DBSCAN. Postaramy się ulepszyć sposób tworzenia klastrów.  Sprawdzimy jak te algotrytmy radzą sobie na różnych zbiorach dużych danych oraz porównamy je ze sobą. Dane będą niezbilansowane, lecz stopień ich niezbilansowania będzię różny. 
 
 \section{Hipoteza.}
 Zmniejszenie liczby danych w klasie większościowej w dużych zbiorach danych nie powoduje znacznego pogorszenia predykcji w procesie inferencji. Metoda pozwalająca w jednoznaczny sposób określić dane informatywne może  w znaczący sposób zwiększyć skuteczność predykcji.
 
-\bibliographystyle{plain}
-\bibliography{xd.bib, Fernandez.bib, OSS.bib, tlink.bib, CNN.bib, Bigdata.bib, Bigdata2.bib, undersampling.bib, undersampling2.bib, undersampling3.bib, usampling4.bib, 10.bib, uny.bib, cnn.bib}
-\phantom{\cite{article}
-\cite{10.5555/3241691.3241712}
-\cite{Tsai2015BigDA}
-\cite{doi:10.1177/2053951716631130}
-\cite{8921159}
-\cite{inproceedings}
-\cite{elhassan2016classification}
-\cite{inproceedingss}
-\cite{8982391}
-\cite{4717268}
-\cite{6891771}
-\cite{8424689}
-\cite{10.5555/2559492}
-\cite{hart1968condensed}
-}
+\section{Plan eksperymentu.}
+\subsection{Research questions.}
+\begin{itemize}
+    \item Czy za pomocą wybranych przez nas algorytmów możliwe jest zbalansowanie zbiorów danych, tak aby ograniczyć wielkość kolekcji danych bez straty na ich jakości?
+    \item Jak modyfikacja  klasteryzacji w procesie undersampligu wpłynie na jakość predykcji?
+    \item Jak prostszy algorytm jakim jest RUS wypadnie w porównaniu z bardziej zaawansowanymi algorytmami undersamplingu?
+    \item Czy istnieje możliwość redukcji danych w klasie większościowej, bez straty informatywności tych danych?
+    \item Jak stopien niezbilansowania danych wpływa na działanie metod undersamplingu?
+\end{itemize}
+\subsection{Plan eksperymentu.}
+\begin{itemize}
+    \item Wybranie konkretnych algorytmów undersamplingu. W naszym przypdaku zostały wybrane dwa algorytmy, które zostały opisane we wcześniejszej części dokumentu.
+    \begin{itemize}
+        \item \textbf{Random Undersampling.}
+        \item \textbf{Cluster Centrtoids.}
+    \end{itemize}
+    \item Wybranie 10 rzeczywistych zbiorów dużych danych o różnym stopniu niezbalansowania, w celu przeprowadzenia na nich eksperymentu badawczego. Zbiory danych zostały wybrane sposród zbiorów publicznie  dostępnych.  \newline
+  
+    \textbf{Wybrane zbiory:}
+    \begin{itemize}
+        \item \href{https://archive.ics.uci.edu/ml/datasets/HEPMASS}{Hepmass Data Set} - liczba instancji: 10500000, liczba atrybutów: 28, charakterystyka zbioru danych: wielowymiarowe, powiązane zadania: klasyfikacja  %https://archive.ics.uci.edu/ml/datasets/HEPMASS
+        \item \href{https://archive.ics.uci.edu/ml/datasets/Bar+Crawl%3A+Detecting+Heavy+Drinking}{Bar Crawl: Detecting Heavy Drinking Data Set} - liczba instancji: 14057567, liczba atrybutów: 3, charakterystyka zbioru danych: wielowymiarowe, szeregi czasowe, powiązane zadania: klasyfikacja, regresja %https://archive.ics.uci.edu/ml/datasets/Bar+Crawl%3A+Detecting+Heavy+Drinking
+        \item \href{https://archive.ics.uci.edu/ml/datasets/Heterogeneity+Activity+Recognition}{Heterogeneity Activity Recognition Data Set} - liczba instancji: 43930257, liczba atrybutów: 16, charakterystyka zbioru danych: wielowymiarowe, szeregi czasowe, powiązane zadania: klasyfikacja, grupowanie %https://archive.ics.uci.edu/ml/datasets/Heterogeneity+Activity+Recognition
+        \item \href{https://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+from+Continuous+Ambient+Sensor+Data}{Human Activity Recognition from Continuous Ambient Sensor Data Data Set} - liczba instancji: 13956534, liczba atrybutów: 37, charakterystyka zbioru danych: wielowymiarowe, sekwencyjne, szeregi czasowe, powiązane zadania: klasyfikacja %https://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+from+Continuous+Ambient+Sensor+Data
+        \item \href{https://archive.ics.uci.edu/ml/datasets/detection_of_IoT_botnet_attacks_N_BaIoT}{Detection of IoT botnet attacks N BaIoT Data Set} - liczba instancji: 7062606, liczba atrybutów: 115, charakterystyka zbioru danych: wielowymiarowe, sekwencyjne, powiązane zadania: klasyfikacja, grupowanie %https://archive.ics.uci.edu/ml/datasets/detection_of_IoT_botnet_attacks_N_BaIoT
+        \item \href{https://archive.ics.uci.edu/ml/datasets/Kitsune+Network+Attack+Dataset}{Kitsune Network Attack Dataset Data Set} - liczba instancji: 27170754, liczba atrybutów: 115, charakterystyka zbioru danych: wielowymiarowe, sekwencyjne, szeregi czasowe, powiązane zadania: klasyfikacja, grupowanie, modelowanie przyczynowe (causal-discovery) %https://archive.ics.uci.edu/ml/datasets/Kitsune+Network+Attack+Dataset
+        \item \href{https://archive.ics.uci.edu/ml/datasets/PPG-DaLiA}{PPG-DaLiA Data Set} - liczba instancji: 8300000, liczba atrybutów: 11, charakterystyka zbioru danych: wielowymiarowe, szeregi czasowe, powiązane zadania: regresja %https://archive.ics.uci.edu/ml/datasets/PPG-DaLiA
+        \item \href{https://archive.ics.uci.edu/ml/datasets/SIFT10M}{SIFT10M Data Set} - liczba instancji: 11164866, liczba atrybutów: 128, charakterystyka zbioru danych: wielowymiarowe, powiązane zadania: modelowanie przyczynowe (causal-discovery) %https://archive.ics.uci.edu/ml/datasets/SIFT10M
+        \item \href{https://archive.ics.uci.edu/ml/datasets/WESAD+%28Wearable+Stress+and+Affect+Detection%29}{WESAD (Wearable Stress and Affect Detection) Data Set} - liczba instancji: 63000000, liczba atrybutów: 12, charakterystyka zbioru danych: wielowymiarowe, szeregi czasowe, powiązane zadania: klasyfikacja, regresja %https://archive.ics.uci.edu/ml/datasets/WESAD+%28Wearable+Stress+and+Affect+Detection%29
+        \item \href{https://archive.ics.uci.edu/ml/datasets/WISDM+Smartphone+and+Smartwatch+Activity+and+Biometrics+Dataset+}{WISDM Smartphone and Smartwatch Activity and Biometrics Dataset Data Set} - liczba instancji: 15630426, liczba atrybutów: 6, charakterystyka zbioru danych: wielowymiarowe, szeregi czasowe, powiązane zadania: klasyfikacja %https://archive.ics.uci.edu/ml/datasets/WISDM+Smartphone+and+Smartwatch+Activity+and+Biometrics+Dataset+
+    \end{itemize}\newline
+    \item Wybranie konkretnych klasyfikatorów, na których zostanie przeprowadzony eksperyment badawczy.\newline
+    \begin{figure}[h!]
+    \includegraphics[width=\textwidth]{classifiers.png}
+    \caption{Klasyfikatory polecane  w obrębie dużych zbiorów danych w bibliotece scikit-learn.} 
+    \label{fig:obrazek_cc1}
+    \end{figure}
+    \newline
+    Zgodnie z rysunkiem nr 8 dla dużych danych zalecane klasyfikatory to:
+    \begin{itemize}
+        \item \textbf{SVC}
+        \item \textbf{Naive Bayes}
+        \item \textbf{KNeighbours Classifier}
+        \item \textbf{Linear SVC}
+    \end{itemize}
+    Klasyfikatory będą potrzebne do dokonania predykcji na zbiorze danych po undersamplingu.
+    \item Implementacja  własnego algorytmu undersamplingu w języku Python:
+    \begin{itemize}
+        \item W celu ulepszenia procesu klasteryzacji operającej się na algorytmie k-means spróbujemy wykorzystać algorytm DBSCAN w celu stworzenia klastrów.
+        \item Modyfikacja algorytmu DBSCAN w celu ulepszenia metody tworzenia klastrów. Próba  dokonania  
+    \end{itemize}
+    \item Implementacja wybranych algorytmów undersamplingu, klasyfikacji oraz określonych wyżej zbiorów danych oraz przeprowadzenie eksperymentu w języku programowania Python:
+    \begin{itemize}
+     \item Podział danych na zbiór testowy i treningowy przy wykorzystaniu wielokrotnej stratyfikowanej walidacji krzyżowej. W związku z faktem, że operacje odbywają się  na dużych zbiorach danych zaproponowano walidację krzyżową w konfiguracji 5x2 tzn. 5 powtórzeń i 2 foldy gdyż nie ma potrzeby wykorzystywać walidacji 5x5.
+     
+    \item Zapisanie wyników z operacji klasyfikacji do macierzy numpy. Takie podejście umożliwia wczytanie wyników w dowolnym programie oraz udostępnienie wyników dalej do dalszych badań.
+    
+    \item Przeprowadzenie testów rankingowych, które umożliwią porównanie ze sobą  określonych metod undersamplingu oraz określenie, która z metod jest najlepsza na zbiorach, na których zostanie przeprowadzone doświadczenie.
+    \item Prezentacja na wykresach radarowych wybranych metryk dla poszczególnych zbiorów danych oraz klasyfikatorów.
+    \end{itemize}
+    \item Dokonanie analizy otrzymanych wyników. Odpowiedz na postawione pytania badawcze, próba wyciągnięcia wniosków na przyszłe eksperymenty badawcze.
+\end{itemize}
+\newline
 
+\bibliographystyle{plain}
+\bibliography{Fernandez.bib, OSS.bib, tlink.bib, CNN.bib, Bigdata.bib, Bigdata2.bib, undersampling.bib, undersampling2.bib, undersampling3.bib, usampling4.bib, 10.bib, uny.bib, cnn.bib, BigData.bib, ClusterCentroids.bib}
 \end{document}

@@ -33,9 +33,9 @@ class Imbalance():
         x = len(self.datasets)
         w = int(math.ceil(x/3))
         if w == 1:
-            fig, ax = plt.subplots(1,1, figsize=(5,5))
+            fig, ax = plt.subplots(1,1, figsize=(8,8))
         else:
-            fig, ax = plt.subplots(w,w, figsize=(5,5))
+            fig, ax = plt.subplots(w,w, figsize=(8,8))
         xd = []
         for i in range(0,len(self.datasets)):
             for i in range (0,w):
@@ -54,8 +54,9 @@ class Imbalance():
             ax[i, j].set_xlim(0,len(self.n_classes[k]))
             ax[i, j].set_ylim(0, len(self.y[k]))
         
+        plt.tight_layout()
         plt.show()
-
+        
 if __name__=="__main__":
     x = Imbalance(['australian', 'balance', 'breastcan', 'cryotherapy', 'diabetes',
             'digit', 'ecoli4', 'german', 'glass2'])

@@ -50,6 +50,9 @@ Temporary Items
 # iCloud generated files
 *.icloud
 
+#Own files 
+comparision.png
+
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/

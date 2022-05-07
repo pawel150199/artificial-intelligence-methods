@@ -17,7 +17,7 @@ from imbalancelevel import Imbalance
     Linear SVC: LinearSVC"""
 
 #zbiory danych
-datasets = ['australian', 'balance']
+datasets = ['sonar']
 
 #Pokazanie rozkładu apriori danego zbioru danych
 ap = Imbalance(datasets)

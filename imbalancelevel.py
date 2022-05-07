@@ -36,15 +36,15 @@ class Imbalance():
 
         if x <= 2:
             fig, ax = plt.subplots(1,2, figsize=(10,5))
-            for i in range(0,x):
+            for i in range(x):
                 name = self.datasets[i]
-                ax[i-1].bar(self.n_classes[i], self.classes_distrobution[i], width = 0.4)
-                ax[i-1].set_title(f"{name}")
-                ax[i-1].set_xlabel("Classes")
-                ax[i-1].set_ylabel("Number of samples")
-                ax[i-1].set_xlim(-1,len(self.n_classes[i]))
-                ax[i-1].set_ylim(0, len(self.y[i]))
-                ax[i-1].set_xticks(self.xticks[i])
+                ax[i].bar(self.n_classes[i], self.classes_distrobution[i], width = 0.4)
+                ax[i].set_title(f"{name}")
+                ax[i].set_xlabel("Classes")
+                ax[i].set_ylabel("Number of samples")
+                ax[i].set_xlim(-1,len(self.n_classes[i]))
+                ax[i].set_ylim(0, len(self.y[i]))
+                ax[i].set_xticks(self.xticks[i])
                 
                 
         
@@ -65,9 +65,14 @@ class Imbalance():
                 ax[i, j].set_title(f"{name}")
                 ax[i, j].set_xlabel("Classes")
                 ax[i, j].set_ylabel("Number of samples")
-                ax[i, j].set_xlim(-1,len(self.n_classes[k]))
+                ax[i, j].set_xlim(len(self.n_classes[k]))
                 ax[i, j].set_ylim(0, len(self.y[k]))
                 ax[i, j].set_xticks(self.xticks[k])
         
         plt.tight_layout()
         plt.show()
+        
+if __name__=="__main__":
+    x = Imbalance(['australian'])
+    x.calcutate()
+    x.plot()

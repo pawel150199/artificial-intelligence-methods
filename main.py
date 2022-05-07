@@ -31,7 +31,6 @@ preprocs = {
 n_datasets = len(datasets)
 n_splits = 5
 n_repeats = 2
-
 #walidacja krzyzowa
 rskf = RepeatedStratifiedKFold(n_splits=n_splits, n_repeats=n_repeats, random_state = 1234)
 

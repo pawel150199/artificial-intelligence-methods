@@ -8,9 +8,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import RepeatedStratifiedKFold
 from imblearn.under_sampling import RandomUnderSampler, ClusterCentroids
 from sklearn.base import clone
-from scipy.stats import rankdata
-from tabulate import tabulate
-from scipy.stats import ttest_ind
+from imbalancelevel import Imbalance
 
 """ Klasyfikatory uzyte w eksperymencie
     GNB: GaussianNB
@@ -20,6 +18,11 @@ from scipy.stats import ttest_ind
 
 #zbiory danych
 datasets = ['australian', 'balance']
+
+#Pokazanie rozkładu apriori danego zbioru danych
+ap = Imbalance(datasets)
+ap.calcutate()
+ap.plot()
 
 #metody undersampligu
 preprocs = {

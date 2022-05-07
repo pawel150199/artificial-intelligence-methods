@@ -71,24 +71,3 @@ class Imbalance():
         
         plt.tight_layout()
         plt.show()
-        
-if __name__=="__main__":
-    x = Imbalance(['australian', 'balance', 'banknote', 'breastcan', 'digit'])
-    x.calcutate()
-    x.plot()
-
-
-
-
-        
-                        
-
-
-
-
-
-
-
-
-
-        

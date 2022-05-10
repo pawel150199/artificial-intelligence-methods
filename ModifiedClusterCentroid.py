@@ -41,14 +41,15 @@ class ModifiedClusterCentroids(ClusterMixin):
         #clustering datasets
         clustering = DBSCAN(eps=self.eps, min_samples=self.min_samples, metric=self.metric, algorithm=self.algorithm).fit(X)
         l, c = np.unique(clustering.labels_, return_counts=True)
+        print(l, "\n\n\n", c)
         new_c = c/2
         for label, n_samples in zip(l, new_c):
             n_samples = int(n_samples)
             X_selected, y_selected = self.rus(X[clustering.labels_==label], y[clustering.labels_==label], n_samples=n_samples)
             X_resampled.append(X_selected)
             y_resampled.append(y_selected)
-        X_selected=np.concatenate(X_selected)
-        y_selected=np.concatenate(y_selected)
+        X_resampled=np.concatenate(X_resampled)
+        y_resampled=np.concatenate(y_resampled)
         l_, c_ = np.unique(y_selected, return_counts=True)
         return X_resampled, y_resampled
             

@@ -4,12 +4,14 @@ from sklearn.datasets import make_blobs, make_classification
 from sklearn.preprocessing import StandardScaler
 from ModifiedClusterCentroid import ModifiedClusterCentroids
 
-X,y = make_blobs(
-    n_samples = 750,
-    random_state = 1,
-    cluster_std=0.4
-)
+datasets = 'sonar'
+dataset = np.genfromtxt("datasets/%s.csv" % (datasets), delimiter=',')
+X = dataset[:, :-1]
+y = dataset[:, -1].astype(int)
+#print(X.shape)
+print(y)
 
 preproc = ModifiedClusterCentroids()
 X_new, y_new = preproc.fit_resample(X,y)
-print(X_new)
+#print(X_new.shape)
+#print(y_new.shape)

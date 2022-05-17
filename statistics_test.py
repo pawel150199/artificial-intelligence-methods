@@ -1,20 +1,21 @@
 import numpy as np
-from sklearn.metrics import accuracy_score
-from scipy.stats import rankdata
 from tabulate import tabulate
 from scipy.stats import ttest_ind
 from imblearn.under_sampling import RandomUnderSampler, ClusterCentroids
+from ModifiedClusterCentroid import ModifiedClusterCentroids
 
 """ Klasyfikatory uzyte w eksperymencie
     GNB: GaussianNB
     SVC: SVC
     kNN: KNeighborsClassifier
-    Linear SVC: LinearSVC"""
+    Linear SVC: LinearSVC
+"""
 
 preprocs = {
     'none': None,
     'RUS' : RandomUnderSampler(),
-    'CC': ClusterCentroids(random_state=1234) 
+    'CC': ClusterCentroids(random_state=1234),
+    'MCC': ModifiedClusterCentroids('const')
 }
 
 #import wyników
@@ -24,16 +25,16 @@ scores_kNN = np.load("results_kNN.npy")
 scores_LSVC = np.load("results_LSVC.npy")
 
 #________________________TESTY STATYSTYCZNE_____________________
+
 """Przeprowadzono testy statystyczne w celu określenia, która metoda preprocesingu jest najlepszana określonym klasyfikatorze"""
 alfa = .05
 t_statistic = np.zeros((len(preprocs), len(preprocs)))
 p_value = np.zeros((len(preprocs), len(preprocs)))
 
 #GNB
-mean_scores_GNB = np.mean(scores_GNB, axis=1)
 for i in range(len(preprocs)):
     for j in range(len(preprocs)):
-        t_statistic[i, j], p_value[i, j] = ttest_ind(mean_scores_GNB[i], mean_scores_GNB[j])
+        t_statistic[i, j], p_value[i, j] = ttest_ind(scores_GNB[i], scores_GNB[j])
 
 headers = list(preprocs.keys())
 names_column = np.expand_dims(np.array(list(preprocs.keys())), axis=1)
@@ -63,10 +64,9 @@ stat_better_table = tabulate(np.concatenate((names_column, stat_better), axis=1)
 print("\n\nStatistically significantly better:\n\n", stat_better_table)
 
 #SVC
-mean_scores_SVC = np.mean(scores_SVC, axis=1)
 for i in range(len(preprocs)):
     for j in range(len(preprocs)):
-        t_statistic[i, j], p_value[i, j] = ttest_ind(mean_scores_SVC[i], mean_scores_SVC[j])
+        t_statistic[i, j], p_value[i, j] = ttest_ind(scores_SVC[i], scores_SVC[j])
 
 headers = list(preprocs.keys())
 names_column = np.expand_dims(np.array(list(preprocs.keys())), axis=1)
@@ -96,10 +96,9 @@ stat_better_table = tabulate(np.concatenate((names_column, stat_better), axis=1)
 print("\n\nStatistically significantly better:\n\n", stat_better_table)
 
 #kNN
-mean_scores_kNN = np.mean(scores_kNN, axis=1)
 for i in range(len(preprocs)):
     for j in range(len(preprocs)):
-        t_statistic[i, j], p_value[i, j] = ttest_ind(mean_scores_kNN[i], mean_scores_kNN[j])
+        t_statistic[i, j], p_value[i, j] = ttest_ind(scores_kNN[i], scores_kNN[j])
 
 headers = list(preprocs.keys())
 names_column = np.expand_dims(np.array(list(preprocs.keys())), axis=1)
@@ -129,10 +128,9 @@ stat_better_table = tabulate(np.concatenate((names_column, stat_better), axis=1)
 print("\n\nStatistically significantly better:\n\n", stat_better_table)
 
 #LSVC
-mean_scores_LSVC = np.mean(scores_LSVC, axis=1)
 for i in range(len(preprocs)):
     for j in range(len(preprocs)):
-        t_statistic[i, j], p_value[i, j] = ttest_ind(mean_scores_LSVC[i], mean_scores_LSVC[j])
+        t_statistic[i, j], p_value[i, j] = ttest_ind(scores_LSVC[i], scores_LSVC[j])
 
 headers = list(preprocs.keys())
 names_column = np.expand_dims(np.array(list(preprocs.keys())), axis=1)

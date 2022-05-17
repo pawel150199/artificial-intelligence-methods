@@ -1,6 +1,6 @@
 from sklearn.cluster import DBSCAN
 import numpy as np
-from sklearn.datasets import make_blobs, make_classification
+from sklearn.datasets import make_blobs, make_classification, make_moons
 from sklearn.preprocessing import StandardScaler
 from ModifiedClusterCentroid import ModifiedClusterCentroids
 
@@ -8,10 +8,13 @@ datasets = 'sonar'
 dataset = np.genfromtxt("datasets/%s.csv" % (datasets), delimiter=',')
 X = dataset[:, :-1]
 y = dataset[:, -1].astype(int)
-#print(X.shape)
-print(y)
 
-preproc = ModifiedClusterCentroids()
+#print(y)
+preproc = ModifiedClusterCentroids(CC_strategy='const')
 X_new, y_new = preproc.fit_resample(X,y)
-#print(X_new.shape)
-#print(y_new.shape)
+y_new = np.reshape(y_new, (X_new.shape[0], 1))
+
+XD = np.concatenate((X_new, y_new), axis=1)
+
+
+

@@ -73,6 +73,6 @@ class Imbalance():
         plt.show()
         
 if __name__=="__main__":
-    x = Imbalance(['australian'])
+    x = Imbalance(['sonar'])
     x.calcutate()
     x.plot()

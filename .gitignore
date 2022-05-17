@@ -50,6 +50,9 @@ Temporary Items
 # iCloud generated files
 *.icloud
 
+#datasets
+datasets
+
 #Own files 
 comparision.png
 

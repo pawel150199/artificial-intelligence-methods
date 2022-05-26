@@ -44,9 +44,9 @@ class ModifiedClusterCentroids(ClusterMixin):
 
         if self.CC_strategy == 'const':
             #clustering datasets
-            clustering = DBSCAN(eps=self.eps, metric=self.metric, algorithm=self.algorithm).fit(X[y==max_class])
-            if minor_probas <= 3:
-                minor_probas = 10
+            clustering = DBSCAN(eps=self.eps, metric=self.metric, algorithm=self.algorithm).fit(X[y==major_class])
+            #if minor_probas <= 3:
+                #minor_probas = 10
 
             l, c = np.unique(clustering.labels_, return_counts=True)
             print(l)
@@ -56,7 +56,40 @@ class ModifiedClusterCentroids(ClusterMixin):
             print(y[major_class==y])
             prob = [i/len(y[major_class==y]) for i in c]
             print(prob)
-            new_c = [prob[i]*c[i] for i in range(0, len(c))]
+            new_c = [prob[i]*minor_probas for i in range(0, len(c))]
+            new_c = np.round(new_c)
+            print(new_c)
+            for label, n_samples in zip(l, new_c):
+                n_samples = int(n_samples)
+                #print(X[np.where(clustering.labels_==label)])
+                X_selected, y_selected = self.rus(X[y==major_class][clustering.labels_==label], y[y==major_class][clustering.labels_==label], n_samples=n_samples)
+                X_resampled.append(X_selected)
+                y_resampled.append(y_selected)
+            X_resampled.append(X[y!=major_class])
+            y_resampled.append(y[y!=major_class])
+            X_resampled=np.concatenate(X_resampled)
+            y_resampled=np.concatenate(y_resampled)
+            l_, c_ = np.unique(y_resampled, return_counts=True)
+            return X_resampled, y_resampled
+
+        elif self.CC_strategy == 'auto':
+            #clustering datasets
+            clustering = DBSCAN(eps=self.eps, metric=self.metric, algorithm=self.algorithm).fit(X)
+            if minor_probas <= 3:
+                minor_probas = 10
+
+            l, c = np.unique(clustering.labels_, return_counts=True)
+            std = []
+            for i in l:
+                print(X[clustering.labels_==i])
+                std.append(np.std(X[clustering.labels_==i].flatten()))
+            std=np.array(std)
+            std=std/std.sum()
+            print(l,c)
+            print(std)
+            
+            #testowanko
+            new_c = np.floor(std*len(y)/2)
             new_c = np.round(new_c)
             print(new_c)
             for label, n_samples in zip(l, new_c):
@@ -68,4 +101,7 @@ class ModifiedClusterCentroids(ClusterMixin):
             X_resampled=np.concatenate(X_resampled)
             y_resampled=np.concatenate(y_resampled)
             l_, c_ = np.unique(y_resampled, return_counts=True)
-            return X_resampled, y_resampled
+            return X_resampled, y_resampled 
+
+        else:
+            raise ValueError("Incorrect CC_strategy")         

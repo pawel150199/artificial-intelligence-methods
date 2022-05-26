@@ -34,19 +34,15 @@ clfs = {
 preprocs = {
     'none': None,
     'RUS' : RandomUnderSampler(),
-    'CC': ClusterCentroids(random_state=1234),
-    #'MCC': ModifiedClusterCentroids('const')
+    'CC': ClusterCentroids(random_state=1234)
 }
 
 
 if __name__=="__main__":
     #import wyników
-    scores_GNB = np.load("results.npy")
-
-    # Gather data
-    scores = scores_GNB
-    mean_scores = np.mean(scores, axis=1)
-    stds = np.std(scores, axis=1)
+    scores = np.load("results.npy")
+    mean_scores = np.mean(scores, axis=2)
+    stds = np.std(scores, axis=2)
     clfs = list(clfs.keys())
     preprocss = list(preprocs.keys())
     n_preprocs = len(preprocs)

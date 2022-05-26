@@ -10,9 +10,9 @@ import matplotlib.pyplot as plt
 #X = dataset[:, :-1]
 #y = dataset[:, -1].astype(int)
 X, y = make_classification(
-    n_samples=100,
-    n_features=2,
-    n_informative=2,
+    n_samples=1000,
+    n_features=3,
+    n_informative=3,
     n_redundant=0,
     n_classes=2,
     weights= [0.3, 0.7]
@@ -21,7 +21,7 @@ X, y = make_classification(
 #print(y)
 preproc = ModifiedClusterCentroids(CC_strategy='const')
 X_new, y_new = preproc.fit_resample(X,y)
-print(X_new.shape)
+#print(X_new.shape)
 fig, ax = plt.subplots(1,2, figsize=(15,7))
 ax[0].scatter(*X.T, c=y)
 ax[0].set_xlim(-4,4)

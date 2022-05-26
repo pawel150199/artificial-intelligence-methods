@@ -20,8 +20,7 @@ clfs = {
 preprocs = {
     'none': None,
     'RUS' : RandomUnderSampler(),
-    'CC': ClusterCentroids(random_state=1234),
-    #'MCC': ModifiedClusterCentroids(CC_strategy='const')
+    'CC': ClusterCentroids(random_state=1234)
 }
 
 #walidacja krzyzowa

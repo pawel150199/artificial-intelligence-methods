@@ -7,6 +7,12 @@ from imblearn.under_sampling import RandomUnderSampler, ClusterCentroids
 from ModifiedClusterCentroid import ModifiedClusterCentroids
 from strlearn.metrics import precision, specificity, f1_score, geometric_mean_score_1, balanced_accuracy_score
 
+"""
+Przeprowadzono doświadczenie w celu porównania jak
+radzą sobie równe algorytmy oversampligu
+w porównaniu z własnym algortytmem
+"""
+
 # Klasyfikatory
 clfs = {
     'GNB': GaussianNB(),

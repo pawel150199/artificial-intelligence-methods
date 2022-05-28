@@ -4,7 +4,8 @@ from tabulate import tabulate
 from scipy.stats import ttest_ind
 from MetricEvaluate import mrts, preprocs, datasets, clfs
 
-""" Wygenerowano tablice z wynikami pochodzącymi z MetricEvaluate
+""" 
+Wygenerowano tablice z wynikami pochodzącymi z MetricEvaluate
 
 Klasyfikatory uzyte w eksperymencie:
     *GNB: GaussianNB
@@ -12,7 +13,7 @@ Klasyfikatory uzyte w eksperymencie:
     *kNN: KNeighborsClassifier
     *Linear SVC: LinearSVC
 
-
+Zapisano dodatkowo w katalogu LatexTable tabele w formacie .tex
 """
 
 # Zmienne globalne uzyte w testach statystycznych

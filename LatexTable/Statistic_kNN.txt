@@ -1,22 +1,22 @@
 \begin{tabular}{lllll}
 \hline
- specificity & yeast6     & 0.993 & 0.881 & 0.893 \\
+ specificity & yeast6     & 0.993 & 0.882 & 0.893 \\
              &            & all   & ---   & ---   \\
- specificity & balance    & 0.960 & 0.676 & 0.773 \\
+ specificity & balance    & 0.960 & 0.674 & 0.773 \\
              &            & all   & ---   & 2     \\
- specificity & australian & 0.815 & 0.734 & 0.738 \\
+ specificity & australian & 0.815 & 0.756 & 0.738 \\
              &            & all   & ---   & ---   \\
- g-mean      & yeast6     & 0.725 & 0.875 & 0.889 \\
+ g-mean      & yeast6     & 0.725 & 0.883 & 0.889 \\
              &            & ---   & 1     & 1     \\
- g-mean      & balance    & 0.919 & 0.794 & 0.845 \\
+ g-mean      & balance    & 0.919 & 0.786 & 0.845 \\
              &            & all   & ---   & 2     \\
- g-mean      & australian & 0.676 & 0.667 & 0.679 \\
+ g-mean      & australian & 0.676 & 0.676 & 0.679 \\
              &            & ---   & ---   & ---   \\
- bac         & yeast6     & 0.768 & 0.876 & 0.889 \\
+ bac         & yeast6     & 0.768 & 0.884 & 0.889 \\
              &            & ---   & 1     & 1     \\
- bac         & balance    & 0.920 & 0.806 & 0.849 \\
+ bac         & balance    & 0.920 & 0.798 & 0.849 \\
              &            & all   & ---   & 2     \\
- bac         & australian & 0.689 & 0.672 & 0.684 \\
+ bac         & australian & 0.689 & 0.682 & 0.684 \\
              &            & ---   & ---   & ---   \\
 \hline
 \end{tabular}

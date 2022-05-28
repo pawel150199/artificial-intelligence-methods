@@ -7,41 +7,41 @@ from imblearn.under_sampling import RandomUnderSampler, ClusterCentroids
 from ModifiedClusterCentroid import ModifiedClusterCentroids
 from strlearn.metrics import precision, specificity, f1_score, geometric_mean_score_1, balanced_accuracy_score
 
-#Klasyfikatory uzyte w eksperymencie
-clfs={
+# Klasyfikatory
+clfs = {
     'GNB': GaussianNB(),
     'SVC': SVC(),
     'kNN': KNeighborsClassifier(),
     'Linear SVC': LinearSVC()
 }
 
-#metody undersampligu
+# Metody undersampligu
 preprocs = {
     'none': None,
     'RUS' : RandomUnderSampler(),
     'CC': ClusterCentroids(random_state=1234),
     #'MCC': ModifiedClusterCentroids(CC_strategy='const')
 }
-#metryki
+# Metryki
 mrts = {
     'specificity': specificity,
     'g-mean': geometric_mean_score_1,
     'bac': balanced_accuracy_score,
 }
 
-#zbiór danych
+# Zbiór danych
 datasets = ['yeast6', 'balance', 'australian']
 
 if __name__ =='__main__':
-    #walidacja krzyzowa
+    # Walidacja krzyzowa
     n_splits = 5
     n_repeats = 2
     rskf = RepeatedStratifiedKFold(n_splits=n_splits, n_repeats=n_repeats, random_state = 1234)
 
-    #tablice z wynikami
+    # Tablice z wynikami
     scores = np.zeros((len(datasets), len(preprocs), n_splits*n_repeats, len(mrts), len(clfs)))
     
-    #Eksperyment
+    # Eksperyment
     for data_id, data_name in enumerate(datasets):
         dataset = np.genfromtxt("datasets/%s.csv" % (data_name) , delimiter=',')
         X = dataset[:, :-1]
@@ -63,4 +63,4 @@ if __name__ =='__main__':
                         scores[data_id, preproc_id, fold_id, m_id, clf_id] = mtr(y[test],y_pred)
 
     #zapisanie  wyników 
-    np.save('metric_results', scores)
+    np.save('Results/metric_results', scores)

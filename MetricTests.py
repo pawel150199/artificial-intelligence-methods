@@ -3,14 +3,19 @@ import numpy as np
 from tabulate import tabulate
 from scipy.stats import ttest_ind
 from MetricEvaluate import mrts, preprocs, datasets, clfs
-""" Klasyfikatory uzyte w eksperymencie
-    GNB: GaussianNB
-    SVC: SVC
-    kNN: KNeighborsClassifier
-    Linear SVC: LinearSVC
+
+""" Wygenerowano tablice z wynikami pochodzącymi z MetricEvaluate
+
+Klasyfikatory uzyte w eksperymencie:
+    *GNB: GaussianNB
+    *SVC: SVC
+    *kNN: KNeighborsClassifier
+    *Linear SVC: LinearSVC
+
+
 """
 
-#global variable used for statistics tests
+# Zmienne globalne uzyte w testach statystycznych
 alpha=.05
 m_fmt="%.3f"
 std_fmt=None
@@ -22,26 +27,23 @@ preprocs = list(preprocs.keys())
 n_preprocs = len(preprocs)
 
 if __name__=="__main__":
-    #import wyników
-
+    # Generowanie tabel
     for clf_id, clf_name in enumerate(clfs):
-        scores = np.load("metric_results.npy")
+        # Pobranie wyników
+        scores = np.load("Results/metric_results.npy")
         scores = scores[:,:,:,:,clf_id]
         mean_scores = np.mean(scores, axis=2)
         stds = np.std(scores, axis=2)
-
-        # Perform tests
-        tables = {}
         t = []
+
         for m_idx, m_name in enumerate(metrics):
-            # Prepare storage for table
             for db_idx, db_name in enumerate(datasets):
-                # Row with mean scores
+                # Wiersz z wartoscia srednia
                 t.append(['%s' % m_name]+ [db_fmt % db_name] + [m_fmt % v for v in mean_scores[db_idx, :, m_idx]])
-                # Row with std
+                # Jesli podamy std_fmt w zmiennych globalnych zostanie do tabeli dodany wiersz z odchyleniem standardowym
                 if std_fmt:
                     t.append(['']+[''] + [std_fmt % v for v in stds[db_idx, :, m_idx]])
-                # Calculate T and p
+                # Obliczenie wartosci T i P
                 T, p = np.array(
                     [[ttest_ind(scores[db_idx, i, :, m_idx],
                         scores[db_idx, j, :, m_idx])
@@ -56,13 +58,15 @@ if __name__=="__main__":
                                 if len(c) > 0 and len(c) < len(preprocs)-1 else ("all" if len(c) == len(preprocs)-1 else nc)
                                 for c in conclusions])
 
-            # Store formatted table
+        # Prezentacja wyników
         print('\n\n\n', clf_name, '\n')  
         headers = ['metrics', 'datasets']
         for i in preprocs:
             headers.append(i)
         print(headers)
         print(tabulate(t))
+
+        # Zapisanie wyników w formacie .tex
         with open('LatexTable/Statistic_%s.txt' % (clf_name), 'w') as f:
             f.write(tabulate(t, tablefmt='latex'))
         

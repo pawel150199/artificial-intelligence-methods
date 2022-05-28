@@ -7,13 +7,14 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC, LinearSVC
 from sklearn.neighbors import KNeighborsClassifier
 from strlearn.metrics import recall, precision, specificity, f1_score, geometric_mean_score_1, balanced_accuracy_score
-
+from MetricEvaluate import mrts, preprocs, datasets
 """ Klasyfikatory uzyte w eksperymencie
     GNB: GaussianNB
     SVC: SVC
     kNN: KNeighborsClassifier
     Linear SVC: LinearSVC
 """
+
 #global variable used for statistics tests
 alpha=.05
 m_fmt="%.3f"
@@ -22,30 +23,13 @@ nc="---"
 db_fmt="%s"
 tablefmt="plain"
 
-datasets = ['yeast6', 'yeast5', 'yeast3', 'wine', 'banana']
-
-clfs = {
-    'GNB': GaussianNB(),
-    'SVC': SVC(),
-    'kNN': KNeighborsClassifier(),
-    'Linear SVC': LinearSVC()
-}
-
-preprocs = {
-    'none': None,
-    'RUS' : RandomUnderSampler(),
-    'CC': ClusterCentroids(random_state=1234)
-}
-
-
 if __name__=="__main__":
     #import wyników
-    scores = np.load("results.npy")
+    scores = np.load("metric_results_GNB.npy")
     mean_scores = np.mean(scores, axis=2)
     stds = np.std(scores, axis=2)
-    clfs = list(clfs.keys())
-    preprocss = list(preprocs.keys())
-    n_preprocs = len(preprocs)
+    clfs = list(preprocs.keys())
+    n_clfs = len(preprocs)
     # Perform tests
     tables = {}
     for m_idx, m_name in enumerate(preprocs):

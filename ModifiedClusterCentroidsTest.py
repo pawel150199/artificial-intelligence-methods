@@ -11,11 +11,11 @@ import matplotlib.pyplot as plt
 #y = dataset[:, -1].astype(int)
 X, y = make_classification(
     n_samples=1000,
-    n_features=3,
-    n_informative=3,
+    n_features=4,
+    n_informative=4,
     n_redundant=0,
-    n_classes=2,
-    weights= [0.3, 0.7]
+    n_classes=3,
+    weights= [1, 5, 5]
 )
 #print(X)
 #print(y)

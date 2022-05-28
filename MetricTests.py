@@ -63,4 +63,6 @@ if __name__=="__main__":
             headers.append(i)
         print(headers)
         print(tabulate(t))
+        with open('LatexTable/Statistic_%s.txt' % (clf_name), 'w') as f:
+            f.write(tabulate(t, tablefmt='latex'))
         

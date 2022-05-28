@@ -1,17 +1,21 @@
 import numpy as np
 from sklearn.cluster import DBSCAN
-from imblearn.under_sampling import ClusterCentroids
-from sklearn.base import clone, ClusterMixin
-from sklearn.utils.validation import check_array, check_is_fitted, check_X_y
+from sklearn.base import ClusterMixin
+from sklearn.utils.validation import  check_X_y
 from sklearn.preprocessing import StandardScaler
 
 class ModifiedClusterCentroids(ClusterMixin):
-    """Modified ClusterCentroids algorithm basen on DBSCAN
-    Parameters:
-    n_cluster, eps, min_samples, metric, algorithm are the same in DBSCAN
-    CC_strategy is in ('const','auto'): 'auto' automaticly make undersampling calculating min form std, 'const' undersamples classes to min probe values from classes, if value is lower than 4 choose 4."""
-    def __init__(self, CC_strategy, n_cluster=None, eps=0.7, metric='euclidean', algorithm='auto',):
-        self.n_cluster = n_cluster
+    """
+    Zmodyfikowany algorytm ClusterCentroids bazujący na klusteryzacji
+    za pomocą algorytmu DBSCAN
+
+    Parametry:
+    n_cluster, eps, min_samples, metric, algorithm przyjmują takie same wartości jak w przypadku algorytmu DBSCAN
+    CC_strategy -> ('const','auto'): 
+    *'const' zmniejsza klasy większościowe automatycznie do klasy mniejszościowej
+    *'auto' zmniejsza klasy większościowe na podstawie odchylenia standardowego
+    """
+    def __init__(self, CC_strategy, eps=0.7, metric='euclidean', algorithm='auto', ):
         self.eps = eps
         self.metric = metric
         self.algorithm = algorithm
@@ -32,18 +36,18 @@ class ModifiedClusterCentroids(ClusterMixin):
         self.n_classes = len(self.classes_)
         self.n_features = X.shape[1]
 
-        #choose majority classes
+        # Wybór klas większościowej
         l, c = np.unique(y, return_counts=True)
         minor_probas = np.amin(c)
         major_class = l[minor_probas!=c]
         print(major_class)
 
-        #Table for resampled dataset
+        # Tabela z danymi po zmianie kształtu
         X_resampled = []
         y_resampled = []
 
         if self.CC_strategy == 'const':
-            #clustering datasets
+            # Klasteryzacja
             clustering = DBSCAN(eps=self.eps, metric=self.metric, algorithm=self.algorithm).fit(X[y==major_class])
             #if minor_probas <= 3:
                 #minor_probas = 10
@@ -51,8 +55,6 @@ class ModifiedClusterCentroids(ClusterMixin):
             l, c = np.unique(clustering.labels_, return_counts=True)
             print(l)
             print(clustering.labels_.shape)
-            #print(X[l==clustering.labels_])
-            #print(y[l==clustering.labels_])
             print(y[major_class==y])
             prob = [i/len(y[major_class==y]) for i in c]
             print(prob)
@@ -73,7 +75,7 @@ class ModifiedClusterCentroids(ClusterMixin):
             return X_resampled, y_resampled
 
         elif self.CC_strategy == 'auto':
-            #clustering datasets
+            # Klasteryzacja
             clustering = DBSCAN(eps=self.eps, metric=self.metric, algorithm=self.algorithm).fit(X)
             if minor_probas <= 3:
                 minor_probas = 10

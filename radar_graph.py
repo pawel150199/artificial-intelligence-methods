@@ -2,17 +2,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 from math import pi
 
-# scores = np.load("Results/metric_results_radar.npy")
+"Tworzony jest wykres radarowy na podstawie wczytywanych danych"
+
+#Wczytywanie danych
 scores = np.load("Results/metric_results.npy")
-# print(scores)
-print(scores.shape)
 scores = np.mean(scores, axis=2).T
-print(scores.shape)
 scores = np.mean(scores, axis=3).T
-print(scores.shape)
 scores = np.mean(scores, axis=2).T
-print(scores.shape)
-# print(scores.shape)
 
 
 

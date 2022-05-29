@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 #y = dataset[:, -1].astype(int)
 
 X, y = make_classification(
-    n_samples=1000,
+    n_samples=100,
     n_features=2,
     n_informative=2,
     n_redundant=0,

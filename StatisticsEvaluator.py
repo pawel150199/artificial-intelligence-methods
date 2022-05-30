@@ -25,7 +25,7 @@ clfs = {
 # Metody undersampligu
 preprocs = {
     'none': None,
-    'RUS' : RandomUnderSampler(),
+    'RUS' : RandomUnderSampler(random_state=123),
     'CC': ClusterCentroids(random_state=1234),
     'MCC': ModifiedClusterCentroids(CC_strategy='const')
 }

@@ -100,15 +100,14 @@ class ModifiedClusterCentroids(ClusterMixin):
             std=np.array(std)
             std=std/std.sum()
             print(l,c)
-            print(std)
-            
+            print('Odchylenie standardowe: \n', std)
+        
             #testowanko
-            new_c = np.floor(std*len(y)/2)
+            new_c = np.floor(std*c)
             new_c = np.round(new_c)
             print(new_c)
             for label, n_samples in zip(l, new_c):
                 n_samples = int(n_samples)
-                #print(X[np.where(clustering.labels_==label)])
                 X_selected, y_selected = self.rus(X[clustering.labels_==label], y[clustering.labels_==label], n_samples=n_samples)
                 X_resampled.append(X_selected)
                 y_resampled.append(y_selected)

@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 #y = dataset[:, -1].astype(int)
 
 X, y = make_classification(
-    n_samples=100,
+    n_samples=10000,
     n_features=2,
     n_informative=2,
     n_redundant=0,
@@ -22,39 +22,50 @@ X, y = make_classification(
 #print(X)
 #print(y)
 preproc = ModifiedClusterCentroids(CC_strategy='auto', cluster_algorithm='DBSCAN')
-X_DBSCAN, y_DBSCAN= preproc.fit_resample(X,y)
+X_auto, y_auto= preproc.fit_resample(X,y)
 preproc = ModifiedClusterCentroids(CC_strategy='const', cluster_algorithm='DBSCAN')
-X_OPTICS, y_OPTICS= preproc.fit_resample(X,y)
+X_const, y_const= preproc.fit_resample(X,y)
+preproc = ModifiedClusterCentroids(CC_strategy='auto', cluster_algorithm='OPTICS')
+X_OPTICS_a, y_OPTICS_a= preproc.fit_resample(X,y)
+preproc = ModifiedClusterCentroids(CC_strategy='const', cluster_algorithm='OPTICS')
+X_OPTICS_c, y_OPTICS_c= preproc.fit_resample(X,y)
 
 # Przed udersamplingiem DBSCAN
-fig, ax = plt.subplots(2,2, figsize=(15,7))
+fig, ax = plt.subplots(2,3, figsize=(15,7))
 ax[0,0].scatter(*X.T, c=y)
 ax[0,0].set_xlim(-4,4)
 ax[0,0].set_ylim(-4,4)
 ax[0,0].set_xlabel('Feature 0')
 ax[0,0].set_ylabel('Feature 1')
 ax[0,0].set_title('Before Undersampling - DBSCAN')
-# Po udersamplingu DBSCAN
-ax[0,1].scatter(*X_DBSCAN.T, c=y_DBSCAN)
+# Po udersamplingu DBSCAN - auto
+ax[0,1].scatter(*X_auto.T, c=y_auto)
 ax[0,1].set_xlim(-4,4)
 ax[0,1].set_ylim(-4,4)
 ax[0,1].set_xlabel('Feature 0')
 ax[0,1].set_ylabel('Feature 1')
-ax[0,1].set_title('After Undersampling - DBSCAN')
-# Przed udersamplingiem OPTICS
-ax[1,0].scatter(*X.T, c=y)
+ax[0,1].set_title('After Undersampling - DBSCAN-auto')
+# Przed udersamplingiem DBSCAN - const
+ax[1,0].scatter(*X_const.T, c=y_const)
 ax[1,0].set_xlim(-4,4)
 ax[1,0].set_ylim(-4,4)
 ax[1,0].set_xlabel('Feature 0')
 ax[1,0].set_ylabel('Feature 1')
-ax[1,0].set_title('Before Undersampling - OPTICS')
-# Po udersamplingu OPTICS
-ax[1,1].scatter(*X_OPTICS.T, c=y_OPTICS)
+ax[1,0].set_title('After undersampling - DBSCAN-const')
+# Po udersamplingu OPTICS - auto
+ax[1,1].scatter(*X_OPTICS_a.T, c=y_OPTICS_a)
 ax[1,1].set_xlim(-4,4)
 ax[1,1].set_ylim(-4,4)
 ax[1,1].set_xlabel('Feature 0')
 ax[1,1].set_ylabel('Feature 1')
-ax[1,1].set_title('After Undersampling - OPTICS')
+ax[1,1].set_title('After Undersampling - OPTICS-auto')
+# Po udersamplingu OPTICS - const
+ax[0,2].scatter(*X_OPTICS_c.T, c=y_OPTICS_c)
+ax[0,2].set_xlim(-4,4)
+ax[0,2].set_ylim(-4,4)
+ax[0,2].set_xlabel('Feature 0')
+ax[0,2].set_ylabel('Feature 1')
+ax[0,2].set_title('After Undersampling - OPTICS-const')
 
 plt.tight_layout()
 plt.show()

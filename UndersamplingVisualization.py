@@ -4,7 +4,7 @@ from sklearn.datasets import make_blobs, make_classification, make_moons
 from sklearn.preprocessing import StandardScaler
 from ModifiedClusterCentroid import ModifiedClusterCentroids
 import matplotlib.pyplot as plt 
-from imblearn.under_sampling import RandomUnderSampler, ClusterCentroids
+from imblearn.under_sampling import RandomUnderSampler, ClusterCentroids, NearMiss
 
 # Pobieranie danych
 #datasets = 'sonar'
@@ -34,6 +34,9 @@ X_RUS, y_RUS = preproc.fit_resample(X,y)
 #CC
 preprocs = ClusterCentroids(random_state=1234)
 X_CC, y_CC = preproc.fit_resample(X,y)
+#NearMiss
+preprocs = NearMiss(version=1)
+X_NM, y_NM = preproc.fit_resample(X,y)
 
 
 
@@ -73,12 +76,18 @@ ax[0,2].set_ylim(-5,5)
 ax[0,2].set_xlabel('Feature 0')
 ax[0,2].set_ylabel('Feature 1')
 ax[0,2].set_title('After Undersampling - CC')
+# Po udersamplingu NearMiss
+ax[1,2].scatter(*X_NM.T, c=y_NM)
+ax[1,2].set_xlim(-5,5)
+ax[1,2].set_ylim(-5,5)
+ax[1,2].set_xlabel('Feature 0')
+ax[1,2].set_ylabel('Feature 1')
+ax[1,2].set_title('After Undersampling - NearMiss')
 
 plt.tight_layout()
 plt.show()
 #y_new = np.reshape(y_new, (X_new.shape[0], 1))
 
-#XD = np.concatenate((X_new, y_new), axis=1)
 
 
 

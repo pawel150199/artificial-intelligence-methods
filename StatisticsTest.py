@@ -1,58 +1,70 @@
+from matplotlib.pyplot import axis
 import numpy as np
 from tabulate import tabulate
 from scipy.stats import ttest_ind
-from imblearn.under_sampling import RandomUnderSampler, ClusterCentroids
-from ModifiedClusterCentroid import ModifiedClusterCentroids
-from StatisticsEvaluator import preprocs, clfs
+from StatisticsEvaluator import preprocs, datasets, clfs
 
 """ 
-Przeprowadzono testy statystyczne
+Wygenerowano tablice z wynikami pochodzącymi z StatisticsEvaluate
 
 Klasyfikatory uzyte w eksperymencie:
     *GNB: GaussianNB
     *SVC: SVC
     *kNN: KNeighborsClassifier
     *Linear SVC: LinearSVC
+
+Zapisano dodatkowo w katalogu LatexTable tabele w formacie .tex
 """
 
-for clf_id, clf_name in enumerate(clfs):
-    #import wyników
-    scores = np.load("Results/results.npy")
-    scores = scores[:, :, clf_id]
+# Zmienne globalne uzyte w testach statystycznych
+alpha=.05
+m_fmt="%.3f"
+std_fmt=None
+nc="---"
+db_fmt="%s"
+tablefmt="plain"
+preprocs = list(preprocs.keys())
+n_preprocs = len(preprocs)
 
-    # Przedział ufności i tablice na wyniki
-    alfa = .05
-    t_statistic = np.zeros((len(preprocs), len(preprocs)))
-    p_value = np.zeros((len(preprocs), len(preprocs)))
+if __name__=="__main__":
+    # Generowanie tabel
+    for clf_id, clf_name in enumerate(clfs):
+        # Pobranie wyników
+        scores = np.load("Results/statistic_results.npy")
+        scores = scores[:,:,:,clf_id]
+        mean_scores = np.mean(scores, axis=2)
+        stds = np.std(scores, axis=2)
+        t = []
 
-    for i in range(len(preprocs)):
-        for j in range(len(preprocs)):
-            t_statistic[i, j], p_value[i, j] = ttest_ind(scores[i], scores[j])
+        for db_idx, db_name in enumerate(datasets):
+            # Wiersz z wartoscia srednia
+            t.append([db_fmt % db_name] + [m_fmt % v for v in mean_scores[db_idx, :]])
+            # Jesli podamy std_fmt w zmiennych globalnych zostanie do tabeli dodany wiersz z odchyleniem standardowym
+            if std_fmt:
+                t.append( [std_fmt % v for v in stds[db_idx, :]])
+            # Obliczenie wartosci T i P
+            T, p = np.array(
+                [[ttest_ind(scores[db_idx, i, :],
+                    scores[db_idx, j, :])
+                for i in range(len(preprocs))]
+                for j in range(len(preprocs))]
+            ).swapaxes(0, 2)
+            _ = np.where((p < alpha) * (T > 0))
+            conclusions = [list(1 + _[1][_[0] == i])
+                        for i in range(n_preprocs)]
+    
+            t.append([''] + [", ".join(["%i" % i for i in c])
+                            if len(c) > 0 and len(c) < len(preprocs)-1 else ("all" if len(c) == len(preprocs)-1 else nc)
+                            for c in conclusions])
 
-    # Wartości P  i T
-    headers = list(preprocs.keys())
-    names_column = np.expand_dims(np.array(list(preprocs.keys())), axis=1)
-    t_statistic_table = np.concatenate((names_column, t_statistic), axis=1)
-    t_statistic_table = tabulate(t_statistic_table, headers, floatfmt=".2f")
-    p_value_table = np.concatenate((names_column, p_value), axis=1)
-    p_value_table = tabulate(p_value_table, headers, floatfmt=".2f")
-    print("\n\n\tStatistic tests for GNB classificator")
-    print("\n\nGNB t-statistic:\n\n", t_statistic_table, "\n\n GNB p-value:\n\n", p_value_table)
+        # Prezentacja wyników
+        print('\n\n\n', clf_name, '\n')  
+        headers = ['datasets']
+        for i in preprocs:
+            headers.append(i)
+        print(tabulate(t, headers))
 
-    # Tablica przewag
-    advantage = np.zeros((len(preprocs), len(preprocs)))
-    advantage[t_statistic > 0] = 1
-    advantage_table = tabulate(np.concatenate(
-        (names_column, advantage), axis=1), headers)
-    print("\n\nAdvantage: \n\n", advantage_table)
-
-    # Róznice statystyczne znaczące
-    significance = np.zeros((len(preprocs), len(preprocs)))
-    significance[p_value <= alfa] = 1
-    significance_table = tabulate(np.concatenate((names_column, significance), axis=1), headers)
-    print(f"\n\nStatistical significance (alpha = {alfa} ):\n\n", significance_table)
-
-    # Wyniki koncowe analizy statystycznej
-    stat_better = significance * advantage
-    stat_better_table = tabulate(np.concatenate((names_column, stat_better), axis=1), headers)
-    print("\n\nStatistically significantly better:\n\n", stat_better_table)
+        # Zapisanie wyników w formacie .tex
+        with open('LatexTable/Statistic_%s.txt' % (clf_name), 'w') as f:
+            f.write(tabulate(t, headers, tablefmt='latex'))
+        

@@ -12,7 +12,7 @@ scores = np.mean(scores, axis=2).T
 
 
 
-methods = ['none','RUS' ,'CC']
+methods = ['none','RUS' ,'CC', 'NM', 'MCC']
 metrics = ['specificity','g-mean','bac']
 N = scores.shape[0]
 

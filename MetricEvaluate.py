@@ -3,7 +3,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC, LinearSVC
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import RepeatedStratifiedKFold
-from imblearn.under_sampling import RandomUnderSampler, ClusterCentroids
+from imblearn.under_sampling import RandomUnderSampler, ClusterCentroids, NearMiss
 from ModifiedClusterCentroid import ModifiedClusterCentroids
 from strlearn.metrics import precision, specificity, f1_score, geometric_mean_score_1, balanced_accuracy_score
 
@@ -26,7 +26,8 @@ preprocs = {
     'none': None,
     'RUS' : RandomUnderSampler(random_state=1234),
     'CC': ClusterCentroids(random_state=1234),
-    #'MCC': ModifiedClusterCentroids(CC_strategy='const')
+    'NM': NearMiss(version=1),
+    'MCC': ModifiedClusterCentroids(CC_strategy='const', cluster_algorithm='DBSCAN')
 }
 # Metryki
 mrts = {
@@ -36,7 +37,7 @@ mrts = {
 }
 
 # Zbiór danych
-datasets = ['yeast6', 'balance', 'australian']
+datasets = ['yeast6', 'australian']
 
 if __name__ =='__main__':
     # Walidacja krzyzowa
@@ -61,9 +62,9 @@ if __name__ =='__main__':
                     X_res, y_res = preprocs[preproc_name].fit_resample(X[train],y[train])
 
                 for clf_id, clf_name in enumerate(clfs):
-                    clf_GNB = clfs[clf_name]
-                    clf_GNB.fit(X_res, y_res)
-                    y_pred = clf_GNB.predict(X[test])
+                    clf = clfs[clf_name]
+                    clf.fit(X_res, y_res)
+                    y_pred = clf.predict(X[test])
                     for m_id, m_name in enumerate(mrts):
                         mtr = mrts[m_name]
                         scores[data_id, preproc_id, fold_id, m_id, clf_id] = mtr(y[test],y_pred)

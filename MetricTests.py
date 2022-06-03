@@ -36,11 +36,12 @@ if __name__=="__main__":
         mean_scores = np.mean(scores, axis=2)
         stds = np.std(scores, axis=2)
         t = []
-
+        #SIlverMan
         for m_idx, m_name in enumerate(metrics):
+            t.append(['%s' % m_name])
             for db_idx, db_name in enumerate(datasets):
                 # Wiersz z wartoscia srednia
-                t.append(['%s' % m_name]+ [db_fmt % db_name] + [m_fmt % v for v in mean_scores[db_idx, :, m_idx]])
+                t.append(['']+ [db_fmt % db_name] + [m_fmt % v for v in mean_scores[db_idx, :, m_idx]])
                 # Jesli podamy std_fmt w zmiennych globalnych zostanie do tabeli dodany wiersz z odchyleniem standardowym
                 if std_fmt:
                     t.append(['']+[''] + [std_fmt % v for v in stds[db_idx, :, m_idx]])
@@ -64,10 +65,9 @@ if __name__=="__main__":
         headers = ['metrics', 'datasets']
         for i in preprocs:
             headers.append(i)
-        print(headers)
-        print(tabulate(t))
+        print(tabulate(t, headers))
 
         # Zapisanie wyników w formacie .tex
         with open('LatexTable/Statistic_%s.txt' % (clf_name), 'w') as f:
-            f.write(tabulate(t, tablefmt='latex'))
+            f.write(tabulate(t, headers, tablefmt='latex'))
         

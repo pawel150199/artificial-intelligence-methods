@@ -12,16 +12,16 @@ import matplotlib.pyplot as plt
 #y = dataset[:, -1].astype(int)
 
 X, y = make_classification(
-    n_samples=10000,
+    n_samples=1000,
     n_features=2,
     n_informative=2,
     n_redundant=0,
-    n_classes=2,
-    weights= [0.4, 0.6]
+    n_clusters_per_class=1,
+    n_classes=3,
+    weights= [0.3, 0.2, 0.5]
 )
-#print(X)
-#print(y)
-preproc = ModifiedClusterCentroids(CC_strategy='auto', cluster_algorithm='DBSCAN')
+
+preproc = ModifiedClusterCentroids(CC_strategy='const', cluster_algorithm='DBSCAN')
 X_auto, y_auto= preproc.fit_resample(X,y)
 preproc = ModifiedClusterCentroids(CC_strategy='const', cluster_algorithm='DBSCAN')
 X_const, y_const= preproc.fit_resample(X,y)

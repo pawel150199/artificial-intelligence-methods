@@ -40,7 +40,7 @@ class ModifiedClusterCentroids(ClusterMixin):
         # Wybór klas większościowej
         l, c = np.unique(y, return_counts=True)
         minor_probas = np.amin(c)
-        major_class = l[minor_probas!=c]
+        minor_class = l[minor_probas==c]
 
         # Tabela z danymi po zmianie kształtu
         X_resampled = []
@@ -50,12 +50,12 @@ class ModifiedClusterCentroids(ClusterMixin):
             """ W przypadku hiperparametru 'const'
             redukowana jest liczebność klas większościowych do poziomu 
             Klasy mniejszościowej"""
-
+            clustering = DBSCAN().fit(X)
             # Klasteryzacja DBSCAN lub OPTICS
             if self.cluster_algorithm == 'DBSCAN':
-                clustering = DBSCAN(eps=self.eps, metric=self.metric, algorithm=self.algorithm).fit(X[y==major_class])
+                clustering = DBSCAN(eps=self.eps, metric=self.metric, algorithm=self.algorithm).fit(X[y!=minor_class])
             elif self.cluster_algorithm == 'OPTICS':
-                clustering = OPTICS(min_samples=self.min_samples).fit(X[y==major_class])
+                clustering = OPTICS(min_samples=self.min_samples).fit(X[y!=minor_class])
             else:
                 raise ValueError('Incorrect cluster_algorithm!')
             
@@ -64,20 +64,20 @@ class ModifiedClusterCentroids(ClusterMixin):
 
             # Określenie rozkłądu prawdopodobieństwa apriori pomiędzy klastrami
             l, c = np.unique(clustering.labels_, return_counts=True)
-            prob = [i/len(y[major_class==y]) for i in c]
+            prob = [i/len(y[minor_class==y]) for i in c]
             # Określenie poziomu, do którego bedzi zmniejszana klasa większościowa
             new_c = [prob[i]*minor_probas for i in range(0, len(c))]
-            new_c = np.ceil(new_c)
+            new_c = np.round(new_c)
             # Undersampling wewnątrz klastrów
             for label, n_samples in zip(l, new_c):
                 n_samples = int(n_samples)
-                X_selected, y_selected = self.rus(X[y==major_class][clustering.labels_==label], y[y==major_class][clustering.labels_==label], n_samples=n_samples)
+                X_selected, y_selected = self.rus(X[y!=minor_class][clustering.labels_==label], y[y!=minor_class][clustering.labels_==label], n_samples=n_samples)
                 X_resampled.append(X_selected)
                 y_resampled.append(y_selected)
 
             # Dodanie klasy mniejszościowej
-            X_resampled.append(X[y!=major_class])
-            y_resampled.append(y[y!=major_class])
+            X_resampled.append(X[y==minor_class])
+            y_resampled.append(y[y==minor_class])
             X_resampled=np.concatenate(X_resampled)
             y_resampled=np.concatenate(y_resampled)
             l_, c_ = np.unique(y_resampled, return_counts=True)
@@ -92,7 +92,7 @@ class ModifiedClusterCentroids(ClusterMixin):
             if self.cluster_algorithm == 'DBSCAN':
                 clustering = DBSCAN(eps=self.eps, metric=self.metric, algorithm=self.algorithm).fit(X[y==major_class])
             elif self.cluster_algorithm == 'OPTICS':
-                clustering = OPTICS(min_samples=self.min_samples).fit(X[y==major_class])
+                clustering = OPTICS(min_samples=self.min_samples).fit(X[y!=minor_class])
             else:
                 raise ValueError('Incorrect cluster_algorithm!')
 
@@ -102,7 +102,7 @@ class ModifiedClusterCentroids(ClusterMixin):
             l, c = np.unique(clustering.labels_, return_counts=True)
             std = []
             for i in l:
-                std.append(np.std(X[y==major_class][clustering.labels_==i].flatten()))
+                std.append(np.std(X[y!=minor_class][clustering.labels_==i].flatten()))
             std=np.array(std)
             print(std)
             std=std/std.sum()
@@ -114,17 +114,22 @@ class ModifiedClusterCentroids(ClusterMixin):
             #print('Odchylenie standardowe: \n', std)
         
             # Undersampling wewnątrz wyznaczonych klastrów
-            new_c = np.ceil(std*c)
-            new_c = new_c/(l-1)
+            new_c = std*c
+            if len(l) <= 1:
+                stand = 1
+            else:
+                stand = len(l)-1
+            new_c = np.ceil(new_c/stand)
+            print('xd:\n', new_c)
             for label, n_samples in zip(l, new_c):
                 n_samples = int(n_samples)
-                X_selected, y_selected = self.rus(X[y==major_class][clustering.labels_==label], y[y==major_class][clustering.labels_==label], n_samples=n_samples)
+                X_selected, y_selected = self.rus(X[y!=minor_class][clustering.labels_==label], y[y!=minor_class][clustering.labels_==label], n_samples=n_samples)
                 X_resampled.append(X_selected)
                 y_resampled.append(y_selected)
 
             # Dodanie klasy mniejszościowej
-            X_resampled.append(X[y!=major_class])
-            y_resampled.append(y[y!=major_class])
+            X_resampled.append(X[y==minor_class])
+            y_resampled.append(y[y==minor_class])
             X_resampled=np.concatenate(X_resampled)
             y_resampled=np.concatenate(y_resampled)
             l_, c_ = np.unique(y_resampled, return_counts=True)

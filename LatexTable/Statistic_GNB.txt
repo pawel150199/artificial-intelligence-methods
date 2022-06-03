@@ -1,21 +1,8 @@
-\begin{tabular}{lllllll}
+\begin{tabular}{llllll}
 \hline
- metrics     & datasets   & none    & RUS     & CC    & NM    & MCC   \\
+ datasets              & none   & RUS   & CC    & NM    & MCC   \\
 \hline
- specificity &            &         &         &       &       &       \\
-             & yeast6     & 0.292   & 0.514   & 0.234 & 0.190 & 1.000 \\
-             &            & 4       & 1, 3, 4 & ---   & ---   & all   \\
-             & australian & 0.910   & 0.905   & 0.918 & 0.852 & 0.199 \\
-             &            & 4, 5    & 4, 5    & 4, 5  & 5     & ---   \\
- g-mean      &            &         &         &       &       &       \\
-             & yeast6     & 0.533   & 0.668   & 0.475 & 0.323 & 0.000 \\
-             &            & 3, 4, 5 & all     & 4, 5  & 5     & ---   \\
-             & australian & 0.751   & 0.755   & 0.758 & 0.763 & 0.250 \\
-             &            & 5       & 5       & 5     & 5     & ---   \\
- bac         &            &         &         &       &       &       \\
-             & yeast6     & 0.639   & 0.721   & 0.610 & 0.416 & 0.500 \\
-             &            & 3, 4, 5 & 3, 4, 5 & 4, 5  & ---   & 4     \\
-             & australian & 0.766   & 0.769   & 0.773 & 0.768 & 0.560 \\
-             &            & 5       & 5       & 5     & 5     & ---   \\
+ csv\_result-datatrieve & 0.585  & 0.614 & 0.671 & 0.556 & 0.496 \\
+                       & ---    & ---   & 4, 5  & ---   & ---   \\
 \hline
 \end{tabular}

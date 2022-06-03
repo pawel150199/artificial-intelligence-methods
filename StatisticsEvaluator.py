@@ -27,12 +27,12 @@ preprocs = {
     'RUS' : RandomUnderSampler(random_state=1234),
     'CC': ClusterCentroids(random_state=1234),
     'NM': NearMiss(version=1),
-    'MCC': ModifiedClusterCentroids(CC_strategy='const', cluster_algorithm='DBSCAN', eps=0.5),
+    'MCC': ModifiedClusterCentroids(CC_strategy='const', cluster_algorithm='DBSCAN', eps=0.1),
     'MCC': ModifiedClusterCentroids(CC_strategy='const', cluster_algorithm='OPTICS')
 }
 
 # Zbiór danych
-datasets = ['yeast6', 'vowel0', 'australian']
+datasets = ['csv_result-datatrieve']
 
 if __name__ =='__main__':
     # Walidacja krzyzowa

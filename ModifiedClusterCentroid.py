@@ -114,7 +114,8 @@ class ModifiedClusterCentroids(ClusterMixin):
             #print('Odchylenie standardowe: \n', std)
         
             # Undersampling wewnątrz wyznaczonych klastrów
-            new_c = np.round(std*c)
+            new_c = np.ceil(std*c)
+            new_c = new_c/(l-1)
             for label, n_samples in zip(l, new_c):
                 n_samples = int(n_samples)
                 X_selected, y_selected = self.rus(X[y==major_class][clustering.labels_==label], y[y==major_class][clustering.labels_==label], n_samples=n_samples)

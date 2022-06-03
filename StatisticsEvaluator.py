@@ -28,11 +28,11 @@ preprocs = {
     'CC': ClusterCentroids(random_state=1234),
     'NM': NearMiss(version=1),
     'MCC': ModifiedClusterCentroids(CC_strategy='const', cluster_algorithm='DBSCAN', eps=0.1),
-    'MCC': ModifiedClusterCentroids(CC_strategy='const', cluster_algorithm='OPTICS')
+    'MCC-2': ModifiedClusterCentroids(CC_strategy='const', cluster_algorithm='DBSCAM', eps=0.1)
 }
 
 # Zbiór danych
-datasets = ['csv_result-datatrieve']
+datasets = ['csv_result-datatrieve', 'csv_result-sick_numeric']
 
 if __name__ =='__main__':
     # Walidacja krzyzowa

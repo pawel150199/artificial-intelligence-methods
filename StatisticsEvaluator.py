@@ -27,19 +27,19 @@ preprocs = {
     'RUS' : RandomUnderSampler(random_state=1234),
     'CC': ClusterCentroids(random_state=1234),
     'NM': NearMiss(version=1),
-    'MCC': ModifiedClusterCentroids(CC_strategy='const', cluster_algorithm='DBSCAN', eps=0.5),
-    'MCC-2': ModifiedClusterCentroids(CC_strategy='auto', cluster_algorithm='DBSCAN', eps=0.5),
-    'MCC-3': ModifiedClusterCentroids(CC_strategy='const', cluster_algorithm='OPTICS', eps=0.5),
-    'MCC-4': ModifiedClusterCentroids(CC_strategy='auto', cluster_algorithm='OPTICS', eps=0.5)
+    'MCC': ModifiedClusterCentroids(CC_strategy='const', cluster_algorithm='DBSCAN', eps=2),
+    'MCC-2': ModifiedClusterCentroids(CC_strategy='auto', cluster_algorithm='DBSCAN', eps=2),
+    'MCC-3': ModifiedClusterCentroids(CC_strategy='const', cluster_algorithm='OPTICS', eps=2),
+    'MCC-4': ModifiedClusterCentroids(CC_strategy='auto', cluster_algorithm='OPTICS', eps=2)
 
 }
 
 # Zbiór danych
-datasets = ['csv_result-kc1','csv_result-kc2']
+datasets = ['csv_result-datatrieve']
 
 if __name__ =='__main__':
     # Walidacja krzyzowa
-    n_splits = 5
+    n_splits = 2
     n_repeats = 2
     rskf = RepeatedStratifiedKFold(n_splits=n_splits, n_repeats=n_repeats, random_state = 1234)
 

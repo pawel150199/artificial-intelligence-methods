@@ -1,8 +1,10 @@
-\begin{tabular}{lrllll}
+\begin{tabular}{lllllll}
 \hline
- datasets              &   none & RUS   & CC    & NM    & MCC   \\
+ datasets       & none    & RUS   & CC    & NM    & MCC   & MCC-2   \\
 \hline
- csv\_result-datatrieve &  0.569 & 0.523 & 0.518 & 0.459 & 0.500 \\
-                       &  4     & ---   & ---   & ---   & ---   \\
+ csv\_result-kc1 & 0.876   & 0.871 & 0.808 & 0.897 & 0.773 & 0.782   \\
+                & 5, 6    & 5, 6  & ---   & 5, 6  & ---   & ---     \\
+ csv\_result-kc2 & 0.623   & 0.561 & 0.555 & 0.512 & 0.416 & 0.463   \\
+                & 4, 5, 6 & 5, 6  & 5, 6  & 5     & ---   & ---     \\
 \hline
 \end{tabular}

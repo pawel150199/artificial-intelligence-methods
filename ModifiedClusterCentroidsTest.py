@@ -1,6 +1,6 @@
 from sklearn.cluster import DBSCAN
 import numpy as np
-from sklearn.datasets import make_blobs, make_classification, make_moons
+from sklearn.datasets import make_blobs, make_classification
 from sklearn.preprocessing import StandardScaler
 from ModifiedClusterCentroid import ModifiedClusterCentroids
 import matplotlib.pyplot as plt 
@@ -17,13 +17,13 @@ X, y = make_classification(
     n_informative=2,
     n_redundant=0,
     n_clusters_per_class=1,
-    n_classes=3,
-    weights= [0.3, 0.2, 0.5]
+    n_classes=2,
+    weights= [0.8, 0.2]
 )
 
 preproc = ModifiedClusterCentroids(CC_strategy='const', cluster_algorithm='DBSCAN')
 X_auto, y_auto= preproc.fit_resample(X,y)
-preproc = ModifiedClusterCentroids(CC_strategy='const', cluster_algorithm='DBSCAN')
+preproc = ModifiedClusterCentroids(CC_strategy='auto', cluster_algorithm='DBSCAN')
 X_const, y_const= preproc.fit_resample(X,y)
 preproc = ModifiedClusterCentroids(CC_strategy='auto', cluster_algorithm='OPTICS')
 X_OPTICS_a, y_OPTICS_a= preproc.fit_resample(X,y)

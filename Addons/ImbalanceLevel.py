@@ -73,6 +73,6 @@ class Imbalance():
         plt.show()
         
 if __name__=="__main__":
-    x = Imbalance(['sonar'])
+    x = Imbalance(['csv_result-cpu_act','csv_result-cpu_small','csv_result-datatrieve', 'csv_result-german','csv_result-house_8L','csv_result-kc1','csv_result-kc2','csv_result-kc3','csv_result-schlvote','csv_result-sick_numeric'])
     x.calcutate()
     x.plot()

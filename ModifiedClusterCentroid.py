@@ -41,6 +41,7 @@ class ModifiedClusterCentroids(ClusterMixin):
         l, c = np.unique(y, return_counts=True)
         minor_probas = np.amin(c)
         minor_class = l[minor_probas==c]
+        print(minor_class)
 
         # Tabela z danymi po zmianie kształtu
         X_resampled = []
@@ -90,7 +91,7 @@ class ModifiedClusterCentroids(ClusterMixin):
 
             # Klasteryzacja 
             if self.cluster_algorithm == 'DBSCAN':
-                clustering = DBSCAN(eps=self.eps, metric=self.metric, algorithm=self.algorithm).fit(X[y==major_class])
+                clustering = DBSCAN(eps=self.eps, metric=self.metric, algorithm=self.algorithm).fit(X[y!=major_class])
             elif self.cluster_algorithm == 'OPTICS':
                 clustering = OPTICS(min_samples=self.min_samples).fit(X[y!=minor_class])
             else:

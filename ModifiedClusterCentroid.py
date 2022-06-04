@@ -68,7 +68,7 @@ class ModifiedClusterCentroids(ClusterMixin):
             prob = [i/len(y[minor_class==y]) for i in c]
             # Określenie poziomu, do którego bedzi zmniejszana klasa większościowa
             new_c = [prob[i]*minor_probas for i in range(0, len(c))]
-            new_c = np.round(new_c)
+            new_c = np.ceil(new_c)
             # Undersampling wewnątrz klastrów
             for label, n_samples in zip(l, new_c):
                 n_samples = int(n_samples)

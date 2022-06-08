@@ -22,12 +22,18 @@ X, y = make_classification(
 )
 #print(X)
 #print(y)
-#MCC - DBSCAN
+#MCC - DBSCAN - const
 preproc = ModifiedClusterCentroids(CC_strategy='const', cluster_algorithm='DBSCAN')
 X_DBSCAN, y_DBSCAN= preproc.fit_resample(X,y)
-#MCC - OPTICS
+#MCC - OPTICS - const
 preproc = ModifiedClusterCentroids(CC_strategy='const', cluster_algorithm='OPTICS')
 X_OPTICS, y_OPTICS= preproc.fit_resample(X,y)
+#MCC - DBSCAN - auto
+preproc = ModifiedClusterCentroids(CC_strategy='const', cluster_algorithm='DBSCAN')
+X_DBSCAN_auto, y_DBSCAN_auto= preproc.fit_resample(X,y)
+#MCC - OPTICS - auto
+preproc = ModifiedClusterCentroids(CC_strategy='const', cluster_algorithm='OPTICS')
+X_OPTICS_auto, y_OPTICS_auto= preproc.fit_resample(X,y)
 #RUS
 preproc = RandomUnderSampler(random_state=1234)
 X_RUS, y_RUS = preproc.fit_resample(X,y)
@@ -40,15 +46,15 @@ X_NM, y_NM = preproc.fit_resample(X,y)
 
 
 
-# Przed udersamplingiem DBSCAN
-fig, ax = plt.subplots(2,3, figsize=(15,7))
+# Przed udersamplingiem DBSCAN-const
+fig, ax = plt.subplots(2,4, figsize=(15,7))
 ax[0,0].scatter(*X.T, c=y)
 ax[0,0].set_xlim(-5,5)
 ax[0,0].set_ylim(-5,5)
 ax[0,0].set_xlabel('Feature 0')
 ax[0,0].set_ylabel('Feature 1')
 ax[0,0].set_title('Before Undersampling' )
-# Po udersamplingu DBSCAN
+# Po udersamplingu DBSCAN-const
 ax[0,1].scatter(*X_DBSCAN.T, c=y_DBSCAN)
 ax[0,1].set_xlim(-5,5)
 ax[0,1].set_ylim(-5,5)
@@ -83,6 +89,21 @@ ax[1,2].set_ylim(-5,5)
 ax[1,2].set_xlabel('Feature 0')
 ax[1,2].set_ylabel('Feature 1')
 ax[1,2].set_title('After Undersampling - NearMiss')
+# Przed udersamplingiem DBSCAN-const
+fig, ax = plt.subplots(2,4, figsize=(15,7))
+ax[0,3].scatter(*X.T, c=y)
+ax[0,3].set_xlim(-5,5)
+ax[0,3].set_ylim(-5,5)
+ax[0,3].set_xlabel('Feature 0')
+ax[0,3].set_ylabel('Feature 1')
+ax[0,3].set_title('Before Undersampling' )
+# Po udersamplingu DBSCAN-const
+ax[1,3].scatter(*X_DBSCAN.T, c=y_DBSCAN)
+ax[1,3].set_xlim(-5,5)
+ax[1,3].set_ylim(-5,5)
+ax[1,3].set_xlabel('Feature 0')
+ax[1,3].set_ylabel('Feature 1')
+ax[1,3].set_title('After Undersampling - DBSCAN')
 
 plt.tight_layout()
 plt.show()

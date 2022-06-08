@@ -111,31 +111,43 @@ class ModifiedClusterCentroids(ClusterMixin):
 
             # Obliczenia odchylenia standarodowego
             l, c = np.unique(clustering.labels_, return_counts=True)
-            std = []
-            for i in l:
-                std.append(np.std(X[y!=minor_class][clustering.labels_==i].flatten()))
-            std=np.array(std)
-            std=std/std.sum()
-            # Wybór większej ilości próbek z klastrów o małym odchyleniu tzn. o duzej gestości
-            std = [1 - i for i in std]
-            std = np.array(std)
-
-            # Mnozenie 1-std/std.sum razy liczbe próbek w klastrze. Im wieksze odchylenie tym mniej próbek zostanie.
-            new_c = std*c
-            new_c = np.ceil(new_c)
-            for label, n_samples in zip(l, new_c):
-                n_samples = int(n_samples)
-                X_selected, y_selected = self.rus(X[y!=minor_class][clustering.labels_==label], y[y!=minor_class][clustering.labels_==label], n_samples=n_samples)
+            if len(l)==1:
+                X_selected, y_selected = self.rus(X[y!=minor_class][clustering.labels_==l], y[y!=minor_class][clustering.labels_==l], n_samples=int(minor_probas))
                 X_resampled.append(X_selected)
                 y_resampled.append(y_selected)
 
-            # Dodanie klasy mniejszościowej
-            X_resampled.append(X[y==minor_class])
-            y_resampled.append(y[y==minor_class])
-            X_resampled=np.concatenate(X_resampled)
-            y_resampled=np.concatenate(y_resampled)
-            l_, c_ = np.unique(y_resampled, return_counts=True)
-            return X_resampled, y_resampled 
+                # Dodanie klasy mniejszościowej
+                X_resampled.append(X[y==minor_class])
+                y_resampled.append(y[y==minor_class])
+                X_resampled=np.concatenate(X_resampled)
+                y_resampled=np.concatenate(y_resampled)
+                return X_resampled, y_resampled 
+
+            else:
+                std = []
+                for i in l:
+                    std.append(np.std(X[y!=minor_class][clustering.labels_==i].flatten()))
+                std=np.array(std)
+                std=std/std.sum()
+                # Wybór większej ilości próbek z klastrów o małym odchyleniu tzn. o duzej gestości
+                std = [1 - i for i in std]
+                std = np.array(std)
+
+                # Mnozenie 1-std/std.sum razy liczbe próbek w klastrze. Im wieksze odchylenie tym mniej próbek zostanie.
+                new_c = std*c
+                new_c = np.ceil(new_c)
+                for label, n_samples in zip(l, new_c):
+                    n_samples = int(n_samples)
+                    X_selected, y_selected = self.rus(X[y!=minor_class][clustering.labels_==label], y[y!=minor_class][clustering.labels_==label], n_samples=n_samples)
+                    X_resampled.append(X_selected)
+                    y_resampled.append(y_selected)
+
+                # Dodanie klasy mniejszościowej
+                X_resampled.append(X[y==minor_class])
+                y_resampled.append(y[y==minor_class])
+                X_resampled=np.concatenate(X_resampled)
+                y_resampled=np.concatenate(y_resampled)
+                return X_resampled, y_resampled 
 
         else:
             raise ValueError("Incorrect CC_strategy!")         

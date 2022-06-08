@@ -1,10 +1,10 @@
 from tkinter import W
 import matplotlib.pyplot as plt 
 import numpy as np
-import math
-from sklearn import datasets
 
 class Imbalance():
+    """Klasa słuzy do sprawdzania rozkładu prawdopodobieństwa apriori w zbiorach danych
+    okazała się pomocna przy nieopisanych zbiorach danych"""
     def __init__(self, datasets):
         self.datasets = datasets
         self.classes_distrobution = []
@@ -32,7 +32,7 @@ class Imbalance():
 
     def plot(self):
         x = len(self.datasets)
-        w = int(math.ceil(x/3))
+        w = int(np.ceil(x/4))
 
         if x <= 2:
             fig, ax = plt.subplots(1,2, figsize=(10,5))
@@ -57,22 +57,24 @@ class Imbalance():
                     print(w)
                     print(i,j)
                     xd.append([i,j])
-                    
-            for k in range(0, len(self.datasets)):
-                i,j = xd[k]
-                name = self.datasets[k]
-                ax[i, j].bar(self.n_classes[k], self.classes_distrobution[k], width = 0.4)
-                ax[i, j].set_title(f"{name}")
-                ax[i, j].set_xlabel("Classes")
-                ax[i, j].set_ylabel("Number of samples")
-                ax[i, j].set_xlim(len(self.n_classes[k]))
-                ax[i, j].set_ylim(0, len(self.y[k]))
-                ax[i, j].set_xticks(self.xticks[k])
+            try:      
+                for k in range(0, len(self.datasets)):
+                    i,j = xd[k]
+                    name = self.datasets[k]
+                    ax[i, j].bar(self.n_classes[k], self.classes_distrobution[k], width = 0.4)
+                    ax[i, j].set_title(f"{name}")
+                    ax[i, j].set_xlabel("Classes")
+                    ax[i, j].set_ylabel("Number of samples")
+                    ax[i, j].set_xlim(-1, len(self.n_classes[k])+1)
+                    ax[i, j].set_ylim(0, len(self.y[k]))
+                    ax[i, j].set_xticks(self.xticks[k])
+            except:
+                pass
         
         plt.tight_layout()
         plt.show()
-        
+      
 if __name__=="__main__":
-    x = Imbalance(['csv_result-cpu_act','csv_result-cpu_small','csv_result-datatrieve', 'csv_result-german','csv_result-house_8L','csv_result-kc1','csv_result-kc2','csv_result-kc3','csv_result-schlvote','csv_result-sick_numeric'])
+    x = Imbalance(['cpu_act','cpu_small','datatrieve', 'german','house_8L','kc1','kc2','kc3','schlvote','sick_numeric'])
     x.calcutate()
     x.plot()

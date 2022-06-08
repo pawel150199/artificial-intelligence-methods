@@ -25,6 +25,7 @@ preproc = ModifiedClusterCentroids(CC_strategy='const', cluster_algorithm='DBSCA
 X_auto, y_auto= preproc.fit_resample(X,y)
 preproc = ModifiedClusterCentroids(CC_strategy='auto', cluster_algorithm='DBSCAN')
 X_const, y_const= preproc.fit_resample(X,y)
+print('Y: \n', y_const)
 preproc = ModifiedClusterCentroids(CC_strategy='auto', cluster_algorithm='OPTICS')
 X_OPTICS_a, y_OPTICS_a= preproc.fit_resample(X,y)
 preproc = ModifiedClusterCentroids(CC_strategy='const', cluster_algorithm='OPTICS')
@@ -69,6 +70,7 @@ ax[0,2].set_title('After Undersampling - OPTICS-const')
 
 plt.tight_layout()
 plt.show()
+plt.savefig('Results/comparision_own_algorithms.png')
 #y_new = np.reshape(y_new, (X_new.shape[0], 1))
 
 #XD = np.concatenate((X_new, y_new), axis=1)

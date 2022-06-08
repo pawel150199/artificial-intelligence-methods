@@ -28,14 +28,15 @@ preprocs = {
     'CC': ClusterCentroids(random_state=1234),
     'NM': NearMiss(version=1),
     'MCC': ModifiedClusterCentroids(CC_strategy='const', cluster_algorithm='DBSCAN', eps=2),
-    # 'MCC-2': ModifiedClusterCentroids(CC_strategy='auto', cluster_algorithm='DBSCAN', eps=2),
-    # 'MCC-3': ModifiedClusterCentroids(CC_strategy='const', cluster_algorithm='OPTICS', eps=2),
-    # 'MCC-4': ModifiedClusterCentroids(CC_strategy='auto', cluster_algorithm='OPTICS', eps=2)
+    'MCC-2': ModifiedClusterCentroids(CC_strategy='auto', cluster_algorithm='DBSCAN', eps=3),
+    'MCC-3': ModifiedClusterCentroids(CC_strategy='const', cluster_algorithm='OPTICS', eps=2),
+    'MCC-4': ModifiedClusterCentroids(CC_strategy='auto', cluster_algorithm='OPTICS', eps=2)
 
 }
 
 # Zbiór danych
-datasets = ['cpu_act','cpu_small','datatrieve', 'german','house_8L','kc1','kc2','kc3','schlvote','sick_numeric']
+#datasets = ['cpu_act','cpu_small','datatrieve', 'german','house_8L','kc1','kc2','kc3','schlvote','sick_numeric']
+datasets = ['datatrieve']
 
 if __name__ =='__main__':
     # Walidacja krzyzowa

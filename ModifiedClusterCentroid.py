@@ -66,7 +66,7 @@ class ModifiedClusterCentroids(ClusterMixin):
 
             # Określenie poziomu, do którego bedzi zmniejszana klasa większościowa
             if len(l)==1:
-                new_c=np.ceil(minor_probas)
+                new_c=np.int(minor_probas)
             else:
                 prob = [i/len(y[y==major_class]) for i in c]
                 new_c = [prob[i]*minor_probas for i in range(0, len(c))]
@@ -110,7 +110,7 @@ class ModifiedClusterCentroids(ClusterMixin):
             # Wybór większej ilości próbek z klastrów o małym odchyleniu tzn. o duzej gestości
             std = [1 - i for i in std]
             std = np.array(std)
-            
+
             # Mnozenie 1-std/std.sum razy liczbe próbek w klastrze. Im wieksze odchylenie tym mniej próbek zostanie.
             new_c = std*c
             new_c = np.ceil(new_c)

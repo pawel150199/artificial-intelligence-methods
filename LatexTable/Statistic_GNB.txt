@@ -1,8 +1,8 @@
 \begin{tabular}{lllllllll}
 \hline
- datasets   & none       & RUS        & CC         & NM         & MCC   & MCC-2   & MCC-3   & MCC-4   \\
+ datasets   & none       & RUS        & CC         & NM      & MCC   & MCC-2   & MCC-3   & MCC-4   \\
 \hline
- datatrieve & 0.649      & 0.684      & 0.706      & 0.667      & 0.496 & 0.492   & 0.506   & 0.490   \\
-            & 5, 6, 7, 8 & 5, 6, 7, 8 & 5, 6, 7, 8 & 5, 6, 7, 8 & ---   & ---     & ---     & ---     \\
+ datatrieve & 0.649      & 0.684      & 0.706      & 0.667   & 0.510 & 0.494   & 0.483   & 0.481   \\
+            & 5, 6, 7, 8 & 5, 6, 7, 8 & 5, 6, 7, 8 & 6, 7, 8 & ---   & ---     & ---     & ---     \\
 \hline
 \end{tabular}

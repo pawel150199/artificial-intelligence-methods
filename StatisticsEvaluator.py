@@ -36,7 +36,7 @@ preprocs = {
 
 # Zbiór danych
 #datasets = ['cpu_act','cpu_small','datatrieve', 'german','house_8L','kc1','kc2','kc3','schlvote','sick_numeric']
-datasets = ['datatrieve']
+datasets = ['cpu_small']
 
 if __name__ =='__main__':
     # Walidacja krzyzowa

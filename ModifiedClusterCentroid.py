@@ -66,26 +66,35 @@ class ModifiedClusterCentroids(ClusterMixin):
 
             # Określenie poziomu, do którego bedzi zmniejszana klasa większościowa
             if len(l)==1:
-                new_c=np.int(minor_probas)
+                new_c=int(minor_probas)
+                X_selected, y_selected = self.rus(X[y!=minor_class][clustering.labels_==l], y[y!=minor_class][clustering.labels_==l], n_samples=new_c)
+                X_resampled.append(X_selected)
+                y_resampled.append(y_selected)
+                X_resampled.append(X[y==minor_class])
+                y_resampled.append(y[y==minor_class])
+                X_resampled=np.concatenate(X_resampled)
+                y_resampled=np.concatenate(y_resampled)
+                return X_resampled, y_resampled
+
             else:
                 prob = [i/len(y[y==major_class]) for i in c]
                 new_c = [prob[i]*minor_probas for i in range(0, len(c))]
                 new_c = np.ceil(new_c)
+                
+                # Undersampling wewnątrz klastrów
+                for label, n_samples in zip(l, new_c):
+                    n_samples = int(n_samples)
+                    X_selected, y_selected = self.rus(X[y!=minor_class][clustering.labels_==label], y[y!=minor_class][clustering.labels_==label], n_samples=n_samples)
+                    X_resampled.append(X_selected)
+                    y_resampled.append(y_selected)
 
-            # Undersampling wewnątrz klastrów
-            for label, n_samples in zip(l, new_c):
-                n_samples = int(n_samples)
-                X_selected, y_selected = self.rus(X[y!=minor_class][clustering.labels_==label], y[y!=minor_class][clustering.labels_==label], n_samples=n_samples)
-                X_resampled.append(X_selected)
-                y_resampled.append(y_selected)
-
-            # Dodanie klasy mniejszościowej
-            X_resampled.append(X[y==minor_class])
-            y_resampled.append(y[y==minor_class])
-            X_resampled=np.concatenate(X_resampled)
-            y_resampled=np.concatenate(y_resampled)
-    
-            return X_resampled, y_resampled
+                # Dodanie klasy mniejszościowej
+                X_resampled.append(X[y==minor_class])
+                y_resampled.append(y[y==minor_class])
+                X_resampled=np.concatenate(X_resampled)
+                y_resampled=np.concatenate(y_resampled)
+        
+                return X_resampled, y_resampled
 
         elif self.CC_strategy == 'auto':
             """ W przypadku hiperparametru 'auto'

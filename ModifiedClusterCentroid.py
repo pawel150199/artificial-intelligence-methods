@@ -111,6 +111,7 @@ class ModifiedClusterCentroids(ClusterMixin):
 
             # Obliczenia odchylenia standarodowego
             l, c = np.unique(clustering.labels_, return_counts=True)
+            # Jesli istnieje jeden klaster  to redukcja nastepuje do wartości klastra mniejszosciowego
             if len(l)==1:
                 X_selected, y_selected = self.rus(X[y!=minor_class][clustering.labels_==l], y[y!=minor_class][clustering.labels_==l], n_samples=int(minor_probas))
                 X_resampled.append(X_selected)

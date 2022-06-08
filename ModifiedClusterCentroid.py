@@ -18,7 +18,7 @@ class ModifiedClusterCentroids(ClusterMixin):
     min_samples->parametr potrzebny do OPTICS
     max_eps->parametr potrzebny do algorytmu OPTICS określa czy cały obszar będziemy analizować
     """
-    def __init__(self, CC_strategy, eps=0.7, metric='euclidean', algorithm='auto', min_samples=5, cluster_algorithm='DBSCAN', max_eps=np.inf):
+    def __init__(self, CC_strategy, eps=0.5, metric='euclidean', algorithm='auto', min_samples=5, cluster_algorithm='DBSCAN', max_eps=np.inf):
         self.eps = eps
         self.cluster_algorithm = cluster_algorithm
         self.min_samples = min_samples

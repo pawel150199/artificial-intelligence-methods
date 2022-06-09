@@ -1,0 +1,8 @@
+\begin{tabular}{lllllll}
+\hline
+ datasets   & MCC   & MCC-2   & MCC-3   & MCC-4   & MCC-5   & MCC-6   \\
+\hline
+ datatrieve & 0.500 & 0.500   & 0.500   & 0.500   & 0.500   & 0.500   \\
+            & ---   & ---     & ---     & ---     & ---     & ---     \\
+\hline
+\end{tabular}

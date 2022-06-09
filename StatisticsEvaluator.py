@@ -35,12 +35,12 @@ preprocs = {
 }
 
 # Zbiór danych
-#datasets = ['cpu_act','cpu_small','datatrieve', 'german','house_8L','kc1','kc2','kc3','schlvote','sick_numeric']
-datasets = ['cpu_small']
+datasets = ['cpu_act','cpu_small','datatrieve', 'german','house_8L','kc1','kc2','kc3','schlvote','sick_numeric']
+#datasets = ['kc1', 'kc2', 'kc3']
 
 if __name__ =='__main__':
     # Walidacja krzyzowa
-    n_splits = 2
+    n_splits = 5
     n_repeats = 2
     rskf = RepeatedStratifiedKFold(n_splits=n_splits, n_repeats=n_repeats, random_state = 1234)
 
@@ -59,7 +59,7 @@ if __name__ =='__main__':
                     X_res, y_res = X[train], y[train]
                 else:
                     X_res, y_res = preprocs[preproc_name].fit_resample(X[train],y[train])
-                    print(preproc_name, ': ', X_res.shape)
+                    #print(preproc_name, ': ', X_res.shape)
 
                 for clf_id, clf_name in enumerate(clfs):
                     clf = clfs[clf_name]

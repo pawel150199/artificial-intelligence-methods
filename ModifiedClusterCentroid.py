@@ -93,7 +93,6 @@ class ModifiedClusterCentroids(ClusterMixin):
                 y_resampled.append(y[y==minor_class])
                 X_resampled=np.concatenate(X_resampled)
                 y_resampled=np.concatenate(y_resampled)
-        
                 return X_resampled, y_resampled
 
         elif self.CC_strategy == 'auto':

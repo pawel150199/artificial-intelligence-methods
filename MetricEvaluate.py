@@ -5,7 +5,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import RepeatedStratifiedKFold
 from imblearn.under_sampling import RandomUnderSampler, ClusterCentroids, NearMiss
 from ModifiedClusterCentroid import ModifiedClusterCentroids
-from strlearn.metrics import precision, specificity, f1_score, geometric_mean_score_1, balanced_accuracy_score
+from strlearn.metrics import precision, specificity, f1_score, geometric_mean_score_1, balanced_accuracy_score, recall
 
 """
 Przeprowadzono doświadczenie w celu porównania jak
@@ -39,10 +39,12 @@ mrts = {
     'specificity': specificity,
     'g-mean': geometric_mean_score_1,
     'bac': balanced_accuracy_score,
+    'f1_score': f1_score,
+    'recall': recall
 }
 
 # Zbiór danych
-datasets = ['yeast6', 'australian']
+datasets = ['kc1', 'kc2', 'kc3']
 
 if __name__ =='__main__':
     # Walidacja krzyzowa

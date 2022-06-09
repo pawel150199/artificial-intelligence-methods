@@ -12,8 +12,8 @@ scores = np.mean(scores, axis=2).T
 
 
 
-methods = ['none','RUS' ,'CC', 'NM', 'MCC']
-metrics = ['specificity','g-mean','bac']
+methods = ['none','RUS' ,'CC', 'NM', 'MCC', 'MCC-2', 'MCC-3', 'MCC-4']
+metrics = ['specificity','g-mean','bac', 'f1_score']
 N = scores.shape[0]
 
 angles = [n / float(N) * 2 * pi for n in range(N)]
@@ -43,6 +43,6 @@ for method_id, method in enumerate(methods):
     ax.plot(angles, values, linewidth=1, linestyle='solid', label=method)
 
 # Dodajemy legende
-plt.legend(bbox_to_anchor=(1.15, -0.05), ncol=5)
+plt.legend(bbox_to_anchor=(0, 0), ncol=8)
 # Zapisujemy wykres
 plt.savefig("Results/radar", dpi=200)

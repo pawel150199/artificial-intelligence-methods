@@ -105,7 +105,6 @@ ax[1,3].set_ylabel('Feature 1')
 ax[1,3].set_title('After Undersampling - DBSCAN - auto')
 
 plt.tight_layout()
-plt.show()
 plt.savefig("Results/visualization.png", dpi=200)
 #y_new = np.reshape(y_new, (X_new.shape[0], 1))
 

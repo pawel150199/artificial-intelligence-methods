@@ -69,7 +69,7 @@ ax[0,2].set_ylabel('Feature 1')
 ax[0,2].set_title('After Undersampling - OPTICS-const')
 
 plt.tight_layout()
-plt.show()
+#plt.show()
 plt.savefig('Results/comparision_own_algorithms.png')
 #y_new = np.reshape(y_new, (X_new.shape[0], 1))
 

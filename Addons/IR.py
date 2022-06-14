@@ -2,7 +2,7 @@ import numpy as np
 from tabulate import tabulate
 
 class IR:
-    "Klasa słuy do wygenerowania tabeli ze statystykami zbiorów danych"
+    "Klasa słuzy do wygenerowania tabeli ze statystykami zbiorów danych"
     def __init__(self, datasets):
         self.datasets = datasets
     

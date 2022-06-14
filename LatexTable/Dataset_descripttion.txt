@@ -1,0 +1,16 @@
+\begin{tabular}{lrrr}
+\hline
+ datasets     &   N\_min &   N\_maj &    IR \\
+\hline
+ cpu\_act      &    2477 &    5715 &  2.31 \\
+ cpu\_small    &    2477 &    5715 &  2.31 \\
+ datatrieve   &      11 &     119 & 10.82 \\
+ german       &     300 &     700 &  2.33 \\
+ house\_8L     &    6744 &   16040 &  2.38 \\
+ kc1          &     326 &    1783 &  5.47 \\
+ kc2          &     107 &     415 &  3.88 \\
+ kc3          &      43 &     415 &  9.65 \\
+ schlvote     &      10 &      28 &  2.8  \\
+ sick\_numeric &     231 &    3541 & 15.33 \\
+\hline
+\end{tabular}

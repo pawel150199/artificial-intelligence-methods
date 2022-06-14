@@ -43,7 +43,6 @@ class ModifiedClusterCentroids(ClusterMixin):
         minor_probas = np.amin(c)
         minor_class = l[minor_probas==c]
         major_class = l[minor_probas!=c]
-        print(minor_class, major_class)
         # Tabela z danymi po zmianie kształtu
         X_resampled = []
         y_resampled = []

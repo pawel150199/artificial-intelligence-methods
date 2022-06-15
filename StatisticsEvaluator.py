@@ -10,7 +10,8 @@ from strlearn.metrics import balanced_accuracy_score
 """
 Przeprowadzono doświadczenie w celu porównania jak
 radzą sobie równe algorytmy oversampligu
-w porównaniu z własnym algortytmem
+w porównaniu z własnym algortytmem 
+w oparciu o metrykę balanced accuracy score
 """
 
 # Klasyfikatory
@@ -39,7 +40,7 @@ datasets = ['cpu_act','cpu_small','datatrieve', 'german','house_8L','kc1','kc2',
 #datasets = ['kc1', 'kc2', 'kc3']
 
 if __name__ =='__main__':
-    # Walidacja krzyzowa
+    # Stratyfikowana, wielokrotna, walidacja krzyzowa
     n_splits = 5
     n_repeats = 2
     rskf = RepeatedStratifiedKFold(n_splits=n_splits, n_repeats=n_repeats, random_state = 1234)
@@ -59,13 +60,13 @@ if __name__ =='__main__':
                     X_res, y_res = X[train], y[train]
                 else:
                     X_res, y_res = preprocs[preproc_name].fit_resample(X[train],y[train])
-                    #print(preproc_name, ': ', X_res.shape)
 
                 for clf_id, clf_name in enumerate(clfs):
                     clf = clfs[clf_name]
                     clf.fit(X_res, y_res)
                     y_pred = clf.predict(X[test])
+                    # Tablica z wynikami w formacie DATAxPREPROCSxFOLDxCLASSIFIERS
                     scores[data_id, preproc_id, fold_id, clf_id] = balanced_accuracy_score(y[test],y_pred)
 
-    #zapisanie  wyników 
+    # Zapisanie  wyników 
     np.save('Results/statistic_results', scores)

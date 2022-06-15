@@ -28,6 +28,7 @@ class ModifiedClusterCentroids(ClusterMixin):
         self.max_eps = max_eps
 
     def rus(self, X, y, n_samples):
+        # Wybór losowych próbek z zadanej przestrzeni jako argument funkcji
         X_inc = np.random.choice(len(X), size=n_samples, replace=False)
         return X[X_inc], y[X_inc]
 
@@ -38,7 +39,7 @@ class ModifiedClusterCentroids(ClusterMixin):
         self.n_classes = len(self.classes_)
         self.n_features = X.shape[1]
 
-        # Wybór klasy mniejszościowej
+        # Wybór klasy mniejszościowej oraz  klas większościowych
         l, c = np.unique(y, return_counts=True)
         minor_probas = np.amin(c)
         minor_class = l[minor_probas==c]
@@ -63,12 +64,13 @@ class ModifiedClusterCentroids(ClusterMixin):
             # Określenie rozkłądu prawdopodobieństwa apriori pomiędzy klastrami
             l, c = np.unique(clustering.labels_, return_counts=True)
 
-            # Określenie poziomu, do którego bedzi zmniejszana klasa większościowa
+            # Określenie poziomu, do którego bedzie zmniejszana klasa większościowa
             if len(l)==1:
                 new_c=int(minor_probas)
                 X_selected, y_selected = self.rus(X[y!=minor_class][clustering.labels_==l], y[y!=minor_class][clustering.labels_==l], n_samples=new_c)
                 X_resampled.append(X_selected)
                 y_resampled.append(y_selected)
+                # Dodanie klasy mniejszościowej
                 X_resampled.append(X[y==minor_class])
                 y_resampled.append(y[y==minor_class])
                 X_resampled=np.concatenate(X_resampled)
@@ -76,6 +78,7 @@ class ModifiedClusterCentroids(ClusterMixin):
                 return X_resampled, y_resampled
 
             else:
+                # Obliczanie prawdopodobieństwa apriori i deklaracja liczby próbek jaka ma zostać w klastrze
                 prob = [i/len(y[y==major_class]) for i in c]
                 new_c = [prob[i]*minor_probas for i in range(0, len(c))]
                 new_c = np.ceil(new_c)

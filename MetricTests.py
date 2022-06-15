@@ -28,15 +28,16 @@ preprocs = list(preprocs.keys())
 n_preprocs = len(preprocs)
 
 if __name__=="__main__":
-    # Generowanie tabel
     for clf_id, clf_name in enumerate(clfs):
         # Pobranie wyników
         scores = np.load("Results/metric_results.npy")
+        # Wybranie konkretnego klasyfikatora do analizy
         scores = scores[:,:,:,:,clf_id]
+        # Obliczenie wartości średniej i odchylenia standardowego po 3 wymiarze
         mean_scores = np.mean(scores, axis=2)
         stds = np.std(scores, axis=2)
         t = []
-        #SIlverMan
+
         for m_idx, m_name in enumerate(metrics):
             t.append(['%s' % m_name])
             for db_idx, db_name in enumerate(datasets):
@@ -45,7 +46,7 @@ if __name__=="__main__":
                 # Jesli podamy std_fmt w zmiennych globalnych zostanie do tabeli dodany wiersz z odchyleniem standardowym
                 if std_fmt:
                     t.append(['']+[''] + [std_fmt % v for v in stds[db_idx, :, m_idx]])
-                # Obliczenie wartosci T i P
+                # Obliczenie wartosci T i P z testy T-studenta 
                 T, p = np.array(
                     [[ttest_ind(scores[db_idx, i, :, m_idx],
                         scores[db_idx, j, :, m_idx])

@@ -31,7 +31,9 @@ if __name__=="__main__":
     for clf_id, clf_name in enumerate(clfs):
         # Pobranie wyników
         scores = np.load("Results/statistic_results.npy")
+        # Wybranie konkretnego klasyfikatora do analizy w iteracji
         scores = scores[:,:,:,clf_id]
+        # Obliczenie wartości średniej i odchylenia standardowego po 3 wymiarze
         mean_scores = np.mean(scores, axis=2)
         stds = np.std(scores, axis=2)
         t = []
@@ -42,7 +44,7 @@ if __name__=="__main__":
             # Jesli podamy std_fmt w zmiennych globalnych zostanie do tabeli dodany wiersz z odchyleniem standardowym
             if std_fmt:
                 t.append( [std_fmt % v for v in stds[db_idx, :]])
-            # Obliczenie wartosci T i P
+            # Obliczenie wartosci T i P z testu T-studenta
             T, p = np.array(
                 [[ttest_ind(scores[db_idx, i, :],
                     scores[db_idx, j, :])

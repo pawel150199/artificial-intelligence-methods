@@ -6,12 +6,13 @@ from math import pi
 
 #Wczytywanie danych
 scores = np.load("Results/metric_results.npy")
+# Uśrednianie danych 
 scores = np.mean(scores, axis=2).T
 scores = np.mean(scores, axis=3).T
 scores = np.mean(scores, axis=2).T
 
 
-
+# Zbiór metod i metryk wykorzystanych w eksperymencie
 methods = ['none','RUS' ,'CC', 'NM', 'MCC', 'MCC-2', 'MCC-3', 'MCC-4']
 metrics = ['specificity','g-mean','bac', 'f1_score', 'recall']
 N = scores.shape[0]
@@ -21,14 +22,14 @@ angles += angles[:1]
 
 ax = plt.subplot(111,polar=True)
 
-# pierwsza os na gorze
+# Pierwsza os na gorze
 ax.set_theta_offset(pi / 2)
 ax.set_theta_direction(-1)
 
-# po jednej osi na metryke
+# Po jednej osi na metryke
 plt.xticks(angles[:-1], metrics)
 
-# os y
+# Os y
 ax.set_rlabel_position(0)
 plt.yticks([0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1],
 ["0.0","0.1","0.2","0.3","0.4","0.5","0.6","0.7","0.8","0.9","1.0"],

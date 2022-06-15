@@ -6,12 +6,14 @@ from ModifiedClusterCentroid import ModifiedClusterCentroids
 import matplotlib.pyplot as plt 
 from imblearn.under_sampling import RandomUnderSampler, ClusterCentroids, NearMiss
 
+"""Kod umozliwia zaprezentowanie wizualizacji działania algorytmów wykorzystanych w eksperymencie"""
 # Pobieranie danych
 #datasets = 'sonar'
 #dataset = np.genfromtxt("datasets/%s.csv" % (datasets), delimiter=',')
 #X = dataset[:, :-1]
 #y = dataset[:, -1].astype(int)
 
+# Generowanie syntetycznego zbioru danych
 X, y = make_classification(
     n_samples=1000,
     n_features=2,
@@ -20,8 +22,7 @@ X, y = make_classification(
     n_classes=2,
     weights= [0.2, 0.8]
 )
-#print(X)
-#print(y)
+
 #MCC - DBSCAN - const
 preproc = ModifiedClusterCentroids(CC_strategy='const', cluster_algorithm='DBSCAN')
 X_DBSCAN, y_DBSCAN= preproc.fit_resample(X,y)
@@ -44,10 +45,9 @@ X_CC, y_CC = preproc.fit_resample(X,y)
 preprocs = NearMiss(version=1)
 X_NM, y_NM = preproc.fit_resample(X,y)
 
-
-
-# Przed udersamplingiem DBSCAN-const
+# Wizualizacja działania algorytmów
 fig, ax = plt.subplots(2,4, figsize=(15,7))
+# Przed udersamplingiem DBSCAN-const
 ax[0,0].scatter(*X.T, c=y)
 ax[0,0].set_xlim(-5,5)
 ax[0,0].set_ylim(-5,5)

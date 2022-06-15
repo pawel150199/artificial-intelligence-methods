@@ -9,8 +9,8 @@ from strlearn.metrics import precision, specificity, f1_score, geometric_mean_sc
 
 """
 Przeprowadzono doświadczenie w celu porównania jak
-radzą sobie równe algorytmy oversampligu
-w porównaniu z własnym algortytmem
+radzą sobie rózne algorytmy oversampligu
+w porównaniu z własnym algortytmem w oparciu o 5 metryk dostępnych w bibliotece strlearn.
 """
 
 # Klasyfikatory
@@ -47,7 +47,7 @@ mrts = {
 datasets = ['cpu_act','cpu_small','datatrieve', 'german','house_8L','kc1','kc2','kc3','schlvote','sick_numeric']
 
 if __name__ =='__main__':
-    # Walidacja krzyzowa
+    # Stratyfikowana walidacja krzyzowa wielokrotnie powtórzona
     n_splits = 5
     n_repeats = 2
     rskf = RepeatedStratifiedKFold(n_splits=n_splits, n_repeats=n_repeats, random_state = 1234)
@@ -74,6 +74,7 @@ if __name__ =='__main__':
                     y_pred = clf.predict(X[test])
                     for m_id, m_name in enumerate(mrts):
                         mtr = mrts[m_name]
+                        # Tablica z wynikami w formacie DATAxPREPROCSxFOLDxMETRICSxCLASSIFIERS
                         scores[data_id, preproc_id, fold_id, m_id, clf_id] = mtr(y[test],y_pred)
 
     #zapisanie  wyników 

@@ -5,12 +5,10 @@ from sklearn.preprocessing import StandardScaler
 from ModifiedClusterCentroid import ModifiedClusterCentroids
 import matplotlib.pyplot as plt 
 
-# Pobieranie danych
-#datasets = 'sonar'
-#dataset = np.genfromtxt("datasets/%s.csv" % (datasets), delimiter=',')
-#X = dataset[:, :-1]
-#y = dataset[:, -1].astype(int)
-
+"""
+Kod słuzy do przetestowania autorskiego algorytmu i wizualizacji wyników
+Do tego wykorzystywany jest synetetyczny zbiór danych
+"""
 X, y = make_classification(
     n_samples=1000,
     n_features=2,
@@ -20,19 +18,25 @@ X, y = make_classification(
     n_classes=2,
     weights= [0.8, 0.2]
 )
+# Pobieranie danych
+#datasets = 'sonar'
+#dataset = np.genfromtxt("datasets/%s.csv" % (datasets), delimiter=',')
+#X = dataset[:, :-1]
+#y = dataset[:, -1].astype(int)
 
+# Undersampling zbioru danych
 preproc = ModifiedClusterCentroids(CC_strategy='const', cluster_algorithm='DBSCAN')
 X_auto, y_auto= preproc.fit_resample(X,y)
 preproc = ModifiedClusterCentroids(CC_strategy='auto', cluster_algorithm='DBSCAN')
 X_const, y_const= preproc.fit_resample(X,y)
-print('Y: \n', y_const)
 preproc = ModifiedClusterCentroids(CC_strategy='auto', cluster_algorithm='OPTICS')
 X_OPTICS_a, y_OPTICS_a= preproc.fit_resample(X,y)
 preproc = ModifiedClusterCentroids(CC_strategy='const', cluster_algorithm='OPTICS')
 X_OPTICS_c, y_OPTICS_c= preproc.fit_resample(X,y)
 
-# Przed udersamplingiem DBSCAN
+# Wyświetlenie wizualizacji
 fig, ax = plt.subplots(2,3, figsize=(15,7))
+# Przed udersamplingiem DBSCAN
 ax[0,0].scatter(*X.T, c=y)
 ax[0,0].set_xlim(-4,4)
 ax[0,0].set_ylim(-4,4)

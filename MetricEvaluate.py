@@ -77,5 +77,5 @@ if __name__ =='__main__':
                         # Tablica z wynikami w formacie DATAxPREPROCSxFOLDxMETRICSxCLASSIFIERS
                         scores[data_id, preproc_id, fold_id, m_id, clf_id] = mtr(y[test],y_pred)
 
-    #zapisanie  wyników 
+    # Zapisanie  wyników 
     np.save('Results/metric_results', scores)

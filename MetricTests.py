@@ -70,5 +70,5 @@ if __name__=="__main__":
 
         # Zapisanie wyników w formacie .tex
         with open('LatexTable/Metrics_%s.txt' % (clf_name), 'w') as f:
-            f.write(tabulate(t, headers, tablefmt='latex'))
+            f.write(tabulate(t, headers, tablefmt='latex_longtable'))
         

@@ -1,7 +1,8 @@
-\begin{tabular}{llllllllll}
+\begin{longtable}{llllllllll}
 \hline
  metrics     & datasets     & none             & RUS              & CC               & NM               & MCC        & MCC-2         & MCC-3         & MCC-4         \\
 \hline
+\endhead
  specificity &              &                  &                  &                  &                  &            &               &               &               \\
              & cpu\_act      & 0.950            & 0.946            & 0.960            & 0.926            & 0.000      & 0.000         & 0.000         & 0.000         \\
              &              & 4, 5, 6, 7, 8    & 4, 5, 6, 7, 8    & all              & 5, 6, 7, 8       & ---        & ---           & ---           & ---           \\
@@ -108,4 +109,4 @@
              & sick\_numeric & 0.898            & 0.907            & 0.911            & 0.509            & 0.007      & 0.000         & 0.000         & 0.000         \\
              &              & 4, 5, 6, 7, 8    & 4, 5, 6, 7, 8    & 4, 5, 6, 7, 8    & 5, 6, 7, 8       & ---        & ---           & ---           & ---           \\
 \hline
-\end{tabular}
+\end{longtable}

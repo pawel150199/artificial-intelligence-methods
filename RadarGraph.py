@@ -46,4 +46,5 @@ for method_id, method in enumerate(methods):
 # Dodajemy legende
 plt.legend(bbox_to_anchor=(1.25, -0.05), ncol=8, fontsize=7)
 # Zapisujemy wykres
+plt.show()
 plt.savefig("Results/radar", dpi=200)

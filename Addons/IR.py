@@ -16,7 +16,6 @@ class IR:
             l, c = np.unique(self.y, return_counts=True)
             minor_probas = np.amin(c)
             idx = np.where(minor_probas!=c)
-            print(idx)
             Nmax = sum(c[idx])
             Nmin = minor_probas
             IR = round((Nmax/Nmin), 2)
@@ -29,10 +28,10 @@ class IR:
             t.append(['%s' % data_name] + ['%.3f' % v for v in self.scores[data_id]])
         headers = ['datasets', 'N_min', 'N_maj', 'IR']
         print(tabulate(t, headers))
-        with open('LatexTable/Dataset_descripttion.txt', 'w') as f:
-            f.write(tabulate(t, headers, tablefmt='latex'))
+        #with open('LatexTable/Dataset_descripttion.txt', 'w') as f:
+            #f.write(tabulate(t, headers, tablefmt='latex'))
 
 if __name__=='__main__':
-    xd = IR(['cpu_act','cpu_small','datatrieve', 'german','house_8L','kc1','kc2','kc3','schlvote','sick_numeric'])
+    xd = IR(['appendicitis', 'balance', 'banana', 'bupa', 'glass', 'led7digit', 'magic', 'phoneme', 'ring','sonar', 'spambase', 'twonorm', 'wdbc','winequality-red', 'winequality-white', 'yeast'])
     xd.calculate()
     xd.tab()

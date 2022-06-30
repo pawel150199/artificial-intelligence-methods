@@ -1,7 +1,6 @@
 from sklearn.cluster import DBSCAN
 import numpy as np
 from sklearn.datasets import make_blobs, make_classification
-from sklearn.preprocessing import StandardScaler
 from ModifiedClusterCentroid import ModifiedClusterCentroids
 import matplotlib.pyplot as plt 
 
@@ -74,10 +73,6 @@ ax[0,2].set_title('After Undersampling - OPTICS-const')
 
 plt.tight_layout()
 #plt.show()
-plt.savefig('Results/comparision_own_algorithms.png')
+plt.savefig('Images/comparision_own_algorithms.png')
 #y_new = np.reshape(y_new, (X_new.shape[0], 1))
-
 #XD = np.concatenate((X_new, y_new), axis=1)
-
-
-

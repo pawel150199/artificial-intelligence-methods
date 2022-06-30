@@ -7,12 +7,7 @@ from imblearn.under_sampling import RandomUnderSampler, ClusterCentroids, NearMi
 from ModifiedClusterCentroid import ModifiedClusterCentroids
 from strlearn.metrics import balanced_accuracy_score
 
-"""
-Przeprowadzono doświadczenie w celu porównania jak
-radzą sobie równe algorytmy oversampligu
-w porównaniu z własnym algortytmem 
-w oparciu o metrykę balanced accuracy score
-"""
+
 
 # Klasyfikatory
 clfs = {
@@ -36,13 +31,14 @@ preprocs = {
 }
 
 # Zbiór danych
-datasets = ['cpu_act','cpu_small','datatrieve', 'german','house_8L','kc1','kc2','kc3','schlvote','sick_numeric']
+datasets = ['appendicitis', 'balance', 'banana', 'bupa', 'glass', 'led7digit', 'magic', 'phoneme', 'ring','sonar', 'spambase', 'twonorm', 'wdbc','winequality-red', 'winequality-white', 'yeast']
+#datasets = ['cpu_act','cpu_small']
 #datasets = ['kc1', 'kc2', 'kc3']
 
 if __name__ =='__main__':
     # Stratyfikowana, wielokrotna, walidacja krzyzowa
     n_splits = 5
-    n_repeats = 2
+    n_repeats = 5
     rskf = RepeatedStratifiedKFold(n_splits=n_splits, n_repeats=n_repeats, random_state = 1234)
 
     # Tablice z wynikami

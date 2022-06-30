@@ -2,7 +2,6 @@ import numpy as np
 from sklearn.cluster import DBSCAN, OPTICS
 from sklearn.base import ClusterMixin
 from sklearn.utils.validation import  check_X_y
-from sklearn.preprocessing import StandardScaler
 
 class ModifiedClusterCentroids(ClusterMixin):
     """
@@ -33,7 +32,6 @@ class ModifiedClusterCentroids(ClusterMixin):
         return X[X_inc], y[X_inc]
 
     def fit_resample(self, X, y):
-        X = StandardScaler().fit_transform(X)
         X, y = check_X_y(X, y)
         self.classes_ = np.unique(y)
         self.n_classes = len(self.classes_)
@@ -79,7 +77,7 @@ class ModifiedClusterCentroids(ClusterMixin):
 
             else:
                 # Obliczanie prawdopodobieństwa apriori i deklaracja liczby próbek jaka ma zostać w klastrze
-                prob = [i/len(y[y==major_class]) for i in c]
+                prob = [i/c.sum() for i in c]
                 new_c = [prob[i]*minor_probas for i in range(0, len(c))]
                 new_c = np.ceil(new_c)
                 

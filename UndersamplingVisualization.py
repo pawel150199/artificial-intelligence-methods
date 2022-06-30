@@ -89,14 +89,14 @@ ax[1,2].set_ylim(-5,5)
 ax[1,2].set_xlabel('Feature 0')
 ax[1,2].set_ylabel('Feature 1')
 ax[1,2].set_title('After Undersampling - NearMiss')
-# Przed udersamplingiem DBSCAN-const
+# Przed udersamplingiem OPTICS-auto
 ax[0,3].scatter(*X_OPTICS_auto.T, c=y_OPTICS_auto)
 ax[0,3].set_xlim(-5,5)
 ax[0,3].set_ylim(-5,5)
 ax[0,3].set_xlabel('Feature 0')
 ax[0,3].set_ylabel('Feature 1')
 ax[0,3].set_title('After Undersampling - OPTICS - auto')
-# Po udersamplingu DBSCAN-const
+# Po udersamplingu DBSCAN-auto
 ax[1,3].scatter(*X_DBSCAN_auto.T, c=y_DBSCAN_auto)
 ax[1,3].set_xlim(-5,5)
 ax[1,3].set_ylim(-5,5)
@@ -105,9 +105,5 @@ ax[1,3].set_ylabel('Feature 1')
 ax[1,3].set_title('After Undersampling - DBSCAN - auto')
 
 plt.tight_layout()
-plt.savefig("Results/visualization.png", dpi=200)
+plt.savefig("Images/visualization.png", dpi=200)
 #y_new = np.reshape(y_new, (X_new.shape[0], 1))
-
-
-
-

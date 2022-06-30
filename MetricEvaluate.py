@@ -44,7 +44,11 @@ mrts = {
 }
 
 # Zbiór danych
-datasets = ['cpu_act','cpu_small','datatrieve', 'german','house_8L','kc1','kc2','kc3','schlvote','sick_numeric']
+#datasets = ['kc1','kc2','kc3','schlvote','sick_numeric']
+datasets = ['appendicitis', 'balance', 'banana', 'bupa', 'glass',
+            'iris', 'led7digit', 'magic', 'phoneme', 'ring', 'segment',
+            'sonar', 'spambase', 'texture', 'twonorm', 'wdbc',
+            'winequality-red', 'winequality-white', 'yeast']
 
 if __name__ =='__main__':
     # Stratyfikowana walidacja krzyzowa wielokrotnie powtórzona

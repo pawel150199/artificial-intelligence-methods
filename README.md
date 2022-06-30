@@ -1,5 +1,5 @@
 # MSI-project
-Badanie wpływy metody undersamplingu na jakość predykcji.
+Badanie wpływu metody undersamplingu na jakość predykcji.
 
 Postawione pytania badawcze:
 * Czy za pomocą wybranych algorytmów możliwe jest zbalansowanie zbiorów danych, tak aby ograniczyć wielkość kolekcji danych bez straty na ich jakości?

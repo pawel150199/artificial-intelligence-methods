@@ -45,15 +45,12 @@ mrts = {
 
 # Zbiór danych
 #datasets = ['kc1','kc2','kc3','schlvote','sick_numeric']
-datasets = ['appendicitis', 'balance', 'banana', 'bupa', 'glass',
-            'iris', 'led7digit', 'magic', 'phoneme', 'ring', 'segment',
-            'sonar', 'spambase', 'texture', 'twonorm', 'wdbc',
-            'winequality-red', 'winequality-white', 'yeast']
+datasets = ['glass1', 'wisconsin', 'pima', 'iris0', 'glass0', 'yeast1', 'haberman', 'vehicle2', 'vehicle3', 'ecoli1', 'segment0', 'glass6']
 
 if __name__ =='__main__':
     # Stratyfikowana walidacja krzyzowa wielokrotnie powtórzona
     n_splits = 5
-    n_repeats = 2
+    n_repeats = 5
     rskf = RepeatedStratifiedKFold(n_splits=n_splits, n_repeats=n_repeats, random_state = 1234)
 
     # Tablice z wynikami

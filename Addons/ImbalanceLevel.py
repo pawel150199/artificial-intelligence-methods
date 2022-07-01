@@ -75,9 +75,7 @@ class Imbalance():
         plt.show()
       
 if __name__=="__main__":
-    x = Imbalance(['appendicitis', 'balance', 'banana', 'bupa',
-        'glass', 'led7digit', 'magic', 'phoneme', 'ring','sonar',
-        'spambase', 'twonorm', 'wdbc','winequality-red',
-        'winequality-white', 'yeast'])
+    x = Imbalance(['glass1', 'wisconsin', 'pima', 'iris0', 'glass0', 'yeast1', 'haberman', 'vehicle2', 'vehicle3', 'ecoli1', 'segment0', 'glass6']
+)
     x.calcutate()
     x.plot()

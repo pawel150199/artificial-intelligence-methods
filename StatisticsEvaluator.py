@@ -31,9 +31,9 @@ preprocs = {
 }
 
 # Zbiór danych
-datasets = ['appendicitis', 'balance', 'banana', 'bupa', 'glass', 'led7digit', 'magic', 'phoneme', 'ring','sonar', 'spambase', 'twonorm', 'wdbc','winequality-red', 'winequality-white', 'yeast']
 #datasets = ['cpu_act','cpu_small']
 #datasets = ['kc1', 'kc2', 'kc3']
+datasets = ['glass1', 'wisconsin', 'pima', 'iris0', 'glass0', 'yeast1', 'haberman', 'vehicle2', 'vehicle3', 'ecoli1', 'segment0', 'glass6']
 
 if __name__ =='__main__':
     # Stratyfikowana, wielokrotna, walidacja krzyzowa

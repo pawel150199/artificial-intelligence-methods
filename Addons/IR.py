@@ -32,6 +32,6 @@ class IR:
             #f.write(tabulate(t, headers, tablefmt='latex'))
 
 if __name__=='__main__':
-    xd = IR(['appendicitis', 'balance', 'banana', 'bupa', 'glass', 'led7digit', 'magic', 'phoneme', 'ring','sonar', 'spambase', 'twonorm', 'wdbc','winequality-red', 'winequality-white', 'yeast'])
+    xd = IR(['glass1', 'wisconsin', 'pima', 'iris0', 'glass0', 'yeast1', 'haberman', 'vehicle2', 'vehicle3', 'ecoli1', 'segment0', 'glass6'])
     xd.calculate()
     xd.tab()
